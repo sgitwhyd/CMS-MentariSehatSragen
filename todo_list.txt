@@ -1,11 +1,10 @@
 ## incoming
-- layout dashboard
 - source data value
 - database structure
 
 
 ## progress
-- landing page layout
+- dashboard admin
 
 
 ## bug
@@ -13,14 +12,17 @@
 
 
 ## finish
--
+- layout landing page
 
 
 ==================
 
 
 #tryload
-- 20240313 -
+- 20240312 -
 -> create new project
--> layouting landing page
+-> layouting landing page (navbar, beranda, footer)
 
+- 20240313 -
+-> layouting landing page (slider, about, blog, blog-detail, kontak)
+-> routing setiap halaman
