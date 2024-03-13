@@ -1111,13 +1111,19 @@ section {
 # Pricing
 --------------------------------------------------------------*/
 .pricing .box {
-  padding: 20px;
-  background: #fff;
+  padding: 10px;
+  background: #ffffff;
   text-align: center;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.12);
   border-radius: 5px;
   position: relative;
   overflow: hidden;
+}
+
+.pricing img {
+  transition: ease-in-out 0.3s;
+  width: 380px;
+  border-radius: 5px;
 }
 
 .pricing h3 {
@@ -1977,6 +1983,7 @@ section {
 
 #footer .footer-top .footer-info {
   margin-bottom: 30px;
+  justify-content: center;
 }
 
 #footer .footer-top .footer-info h3 {
