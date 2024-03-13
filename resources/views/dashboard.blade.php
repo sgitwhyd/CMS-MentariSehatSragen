@@ -1,5 +1,53 @@
 @extends('layouts.main')
 
+@section('slider')
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+   <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+     <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+     <div class="carousel-inner" role="listbox">
+       <!-- Slide 1 -->
+       <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg)">
+         <div class="carousel-container">
+           <div class="container">
+             <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Sailor</span></h2>
+             <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+             <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+           </div>
+         </div>
+       </div>
+       <!-- Slide 2 -->
+       <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg)">
+         <div class="carousel-container">
+           <div class="container">
+             <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
+             <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+             <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+           </div>
+         </div>
+       </div>
+       <!-- Slide 3 -->
+       <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg)">
+         <div class="carousel-container">
+           <div class="container">
+             <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
+             <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+             <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+           </div>
+         </div>
+       </div>
+     </div>
+     <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+       <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+     </a>
+     <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+       <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+     </a>
+   </div>
+ </section><!-- End Hero -->
+
+@endsection
+
 @section('content')
 <!-- page section here -->
    <!-- ======= About Section ======= -->
@@ -34,25 +82,29 @@
    <!-- ======= Visi Misi Section ======= -->
    <section id="services" class="services">
       <div class="container">
-        <div class="row">
-          <div class="col-6">
-            <h2 class="text-center mb-3">Visi</h2>
-            <div class="icon-box">
-              <i class="bi bi-briefcase"></i>
-              <h4><a href="#">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+         <div class="section-title">
+            <h2></h2>
+            <p>Visi dan Misi</p>
+         </div>
+         <div class="row">
+            <div class="col-6">
+               <h2 class="text-center mb-3">Visi</h2>
+               <div class="icon-box">
+                  <i class="bi bi-briefcase"></i>
+                  <h4><a href="#">Lorem Ipsum</a></h4>
+                  <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+               </div>
+               <div class="icon-box">
+                  <i class="bi bi-card-checklist"></i>
+                  <h4><a href="#">Dolor Sitema</a></h4>
+                  <p>Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+               </div>
+               <div class="icon-box">
+                  <i class="bi bi-bar-chart"></i>
+                  <h4><a href="#">Sed ut perspiciatis</a></h4>
+                  <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+               </div>
             </div>
-            <div class="icon-box">
-              <i class="bi bi-card-checklist"></i>
-              <h4><a href="#">Dolor Sitema</a></h4>
-              <p>Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-            </div>
-            <div class="icon-box">
-              <i class="bi bi-bar-chart"></i>
-              <h4><a href="#">Sed ut perspiciatis</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-            </div>
-          </div>
           <div class="col-6">
             <h2 class="text-center mb-3">Misi</h2>
             <div class="icon-box">
@@ -78,7 +130,10 @@
    <!-- ======= Team Section ======= -->
    <section id="team" class="team ">
       <div class="container">
-         <h2 class="text-center mb-3">Pengurus</h2>
+         <div class="section-title">
+            <h2>Pengurus</h2>
+            <p>Mentari Sehat Indonesia</p>
+         </div>
          <div class="row">
             <div class="col-lg-6">
                <div class="member d-flex align-items-start">
@@ -150,7 +205,10 @@
 
     <section id="pricing" class="pricing">
       <div class="container">
-        <h2 class="text-center mb-3">Berita dan Kegiatan</h2>
+         <div class="section-title">
+            <h2>Blog</h2>
+            <p>Berita dan Kegiatan</p>
+         </div>
         <div class="row">
           <div class="col-lg-4 col-md-6">
             <div class="box">
