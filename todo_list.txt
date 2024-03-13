@@ -1,0 +1,26 @@
+## incoming
+- layout dashboard
+- source data value
+- database structure
+
+
+## progress
+- landing page layout
+
+
+## bug
+-
+
+
+## finish
+-
+
+
+==================
+
+
+#tryload
+- 20240313 -
+-> create new project
+-> layouting landing page
+
