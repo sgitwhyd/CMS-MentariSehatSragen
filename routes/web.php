@@ -18,6 +18,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/about', [HomeController::class, 'about']);
 Route::get('/teams', [HomeController::class, 'teams']);
 Route::get('/blog', [HomeController::class, 'blog']);
+Route::get('/blog-detail/{id}', [HomeController::class, 'detailBlog']);
 Route::get('/contact', [HomeController::class, 'contact']);
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin-dashboard');

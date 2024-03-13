@@ -41,7 +41,7 @@
               Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta. Est cum et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis dolore.
             </p>
             <div class="read-more">
-              <a href="blog-single.html">Read More</a>
+              <a href="{{'/blog-detail/1'}}">Read More</a>
             </div>
           </div>
         </article><!-- End blog entry -->

@@ -22,6 +22,10 @@ class HomeController extends Controller
         return view('blog');
     }
 
+    public function detailBlog($id) {
+        return view('blog-detail');
+    }
+
     public function contact() {
         return view('contact');
     }
