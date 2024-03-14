@@ -1,1 +1,0 @@
-<h1>Content for admin dashboard here</h1>
