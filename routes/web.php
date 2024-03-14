@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,4 +23,9 @@ Route::get('/blog', [HomeController::class, 'blog']);
 Route::get('/blog-detail/{id}', [HomeController::class, 'detailBlog']);
 Route::get('/contact', [HomeController::class, 'contact']);
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin-dashboard');
+Route::prefix('admin')->group(function () {
+   Route::get('/', [AdminController::class, 'index'])->name('admin-dashboard');
+   // auth
+   Route::get('/login', [AuthController::class, 'login'])->name('login');
+   Route::post('/login', [AuthController::class, 'loginVerify']);
+});

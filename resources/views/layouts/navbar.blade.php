@@ -10,7 +10,7 @@
       </li>
       <li><a href="{{'/blog'}}">Berita dan Kegiatan</a></li>
       <li><a href="{{'/contact'}}">Kontak</a></li>
-      <li><a href="{{ route('admin-dashboard')}}" class="getstarted">Login</a></li>
+      <li><a href="{{ route('login')}}" class="getstarted">Login</a></li>
    </ul>
    <i class="bi bi-list mobile-nav-toggle"></i>
 </nav><!-- .navbar -->

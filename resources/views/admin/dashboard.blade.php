@@ -1,1 +1,1 @@
-<h1>Dashboard for admin dashboard here</h1>
+<h1>Dashboard for admin here</h1>
