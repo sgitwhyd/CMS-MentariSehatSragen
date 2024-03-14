@@ -19,8 +19,9 @@
       <h2>Kontak</h2>
       <p>Hubungi Kami</p>
     </div>
-    <div>
-      <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
+
+    <div class="maps">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126571.02822198583!2d110.76000890749444!3d-7.537340755036779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a148311aa70d1%3A0x41e53cdaf6c8320f!2sDe%20Tjolomadoe!5e0!3m2!1sid!2sid!4v1710427633243!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     <div class="row mt-5">
@@ -51,7 +52,7 @@
 
       <div class="col-lg-8 mt-5 mt-lg-0">
 
-        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+        <form action="mailto:sigitwid.id@gmail.com" method="post" role="form" class="php-email-form">
           <div class="row">
             <div class="col-md-6 form-group">
               <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -85,5 +86,9 @@
 
 
 @section('script')
-
+ <script>
+   $(document).ready(function() {
+     $('.maps iframe').prop('width','100%');
+   });
+ </script>
 @endsection

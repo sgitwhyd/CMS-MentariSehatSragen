@@ -1,0 +1,47 @@
+20240314
+###
+# slider
+- title
+- description
+- image
+
+# about
+- image
+- form editor
+
+# visi_misi
+- form editor
+- layout seperti about
+
+# pengurus
+- nama
+- jabatan
+- image
+- layout flex cloumn (sigit)
+
+# blog
+- image layout (sigit)
+- title
+- description (text)
+- content (form editor)
+- user id (creator)
+- created at
+
+# blog detail
+- with slug
+- layout 100%
+
+# kontak
+- maps (inframe)
+- no.phone
+- email
+- alamat
+- form saran (ala ala post)
+
+# footer
+- bg image
+- title
+- alamat
+- no.phone
+- email
+- medsos(fb,twit,ig,tt,yt)
