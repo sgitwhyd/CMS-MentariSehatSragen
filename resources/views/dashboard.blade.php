@@ -87,7 +87,7 @@
             <p>Visi dan Misi</p>
          </div>
          <div class="row">
-            <div class="col-6">
+            <div class="col-lg-6 col-md-12">
                <h2 class="text-center mb-3">Visi</h2>
                <div class="icon-box">
                   <i class="bi bi-briefcase"></i>
@@ -105,7 +105,7 @@
                   <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
                </div>
             </div>
-          <div class="col-6">
+          <div class="col-lg-6 col-md-12">
             <h2 class="text-center mb-3">Misi</h2>
             <div class="icon-box">
               <i class="bi bi-binoculars"></i>
@@ -203,31 +203,33 @@
       </div>
    </section><!-- End Team Section -->
 
-    <section id="pricing" class="pricing">
+   <section id="pricing" class="pricing">
       <div class="container">
          <div class="section-title">
             <h2>Blog</h2>
             <p>Berita dan Kegiatan</p>
          </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6">
-            <div class="box">
-              <img src="{{ asset('assets/img/blog/blog-1.jpg')}}" alt="">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed reprehenderit adipisci provident laboriosam voluptate! Doloribus dolor porro dicta nesciunt quo aliquam recusandae laboriosam quibusdam consequuntur iste vel, tempora modi fugit!</p>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Selengkapnya...</a>
-              </div>
+         <div class="row">
+            <div class="col-lg-4 col-md-6">
+               <div class="box">
+                  <div class="pic">
+                     <img src="{{ asset('assets/img/blog/blog-1.jpg')}}" alt="">
+                  </div>
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed reprehenderit adipisci provident laboriosam voluptate! Doloribus dolor porro dicta nesciunt quo aliquam recusandae laboriosam quibusdam consequuntur iste vel, tempora modi fugit!</p>
+                  <div class="btn-wrap">
+                     <a href="#" class="btn-buy">Selengkapnya...</a>
+                  </div>
+               </div>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="box">
-              <img src="{{ asset('assets/img/blog/blog-1.jpg')}}" alt="">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed reprehenderit adipisci provident laboriosam voluptate! Doloribus dolor porro dicta nesciunt quo aliquam recusandae laboriosam quibusdam consequuntur iste vel, tempora modi fugit!</p>
-              <div class="btn-wrap">
-                <a href="#" class="btn-buy">Selengkapnya...</a>
-              </div>
+            <div class="col-lg-4 col-md-6">
+               <div class="box">
+               <img src="{{ asset('assets/img/blog/blog-1.jpg')}}" alt="">
+               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed reprehenderit adipisci provident laboriosam voluptate! Doloribus dolor porro dicta nesciunt quo aliquam recusandae laboriosam quibusdam consequuntur iste vel, tempora modi fugit!</p>
+               <div class="btn-wrap">
+                  <a href="#" class="btn-buy">Selengkapnya...</a>
+               </div>
+               </div>
             </div>
-          </div>
           <div class="col-lg-4 col-md-6">
             <div class="box">
               <img src="{{ asset('assets/img/blog/blog-1.jpg')}}" alt="">
