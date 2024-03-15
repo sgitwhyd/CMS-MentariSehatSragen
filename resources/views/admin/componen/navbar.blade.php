@@ -2,7 +2,7 @@
    <div class="d-flex align-items-center justify-content-between">
      <a href="#" class="logo d-flex align-items-center">
        <img src="https://mentarisehatindonesiakabdemak.com/public/assets/img/navbar-logo.png" alt="logo">
-       <span>MSI Sragen</span>
+       <span>MSI</span>
      </a>
      <i class="bi bi-list toggle-sidebar-btn"></i>
    </div>
