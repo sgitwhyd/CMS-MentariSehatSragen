@@ -28,4 +28,8 @@ Route::prefix('admin')->group(function () {
    // auth
    Route::get('/login', [AuthController::class, 'login'])->name('login');
    Route::post('/login', [AuthController::class, 'loginVerify']);
+
+   // footer
+   Route::get('/footer', [AdminController::class, 'footer'])->name('footer');
+   Route::post('/footer', [AdminController::class, 'footerStore']);
 });

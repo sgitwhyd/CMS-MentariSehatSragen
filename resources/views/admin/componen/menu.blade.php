@@ -38,7 +38,7 @@
        </a>
      </li>
      <li class="nav-item">
-       <a class="nav-link collapsed" href="#">
+       <a class="nav-link collapsed" href="{{route('footer')}}">
          <i class="bi bi-card-text"></i>
          <span>Footer</span>
        </a>
