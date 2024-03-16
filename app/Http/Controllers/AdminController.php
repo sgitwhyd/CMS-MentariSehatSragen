@@ -12,19 +12,21 @@ use App\Models\Abouts;
 
 class AdminController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         // auth check
-        // 
+        //
         return view('admin.dashboard');
     }
 
-    public function about() {
+    public function about()
+    {
         $about = Abouts::get()->last();
         return view('admin.about', compact('about'));
     }
 
-    public function aboutStore(Request $request) {
-        dd($request->content);
+    public function aboutStore(Request $request)
+    {
         $is_valid = $request->validate([
             'content' =>'required',
             'image' =>'required|file|image|mimes:jpg,png,jpeg|max:2048',
@@ -34,7 +36,7 @@ class AdminController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             // rename and store local file upload
-            $fileName = time().'_'. Str::random(20). '.'. $file->getClientOriginalExtension();  
+            $fileName = time().'_'. Str::random(20). '.'. $file->getClientOriginalExtension();
             $file->move(public_path('images/about'), $fileName);
         }
         $about = new Abouts;
@@ -44,11 +46,13 @@ class AdminController extends Controller
 
     }
 
-    public function slider() {
+    public function slider()
+    {
         return view('admin.slider');
     }
 
-    public function sliderStore(Request $request) {
+    public function sliderStore(Request $request)
+    {
         $is_valid = $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -72,11 +76,13 @@ class AdminController extends Controller
         return redirect()->route('slider')->with('success', 'Slider berhasil ditambahkan');
     }
 
-    public function teams() {
+    public function teams()
+    {
         return view('admin.pengurus');
     }
 
-    public function teamStore(Request $request) {
+    public function teamStore(Request $request)
+    {
         $is_valid = $request->validate([
             'nama' => 'required',
             'jabatan' => 'required',
@@ -86,7 +92,7 @@ class AdminController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             // rename and store local file upload
-            $fileName = time().'_'. Str::random(20). '.' . $file->getClientOriginalExtension();  
+            $fileName = time().'_'. Str::random(20). '.' . $file->getClientOriginalExtension();
             $file->move(public_path('uploads'), $fileName);
         }
         Teams::create([
@@ -98,11 +104,13 @@ class AdminController extends Controller
 
     }
 
-    public function visiMisi() {
+    public function visiMisi()
+    {
         return view('admin.visi-misi');
     }
 
-    public function visiMisiStore(Request $request) {
+    public function visiMisiStore(Request $request)
+    {
         $is_valid = $request->validate([
             'visi' =>'required',
             'misi' =>'required',
@@ -115,23 +123,28 @@ class AdminController extends Controller
         return response()->json(['success']);
     }
 
-    public function blog() {
+    public function blog()
+    {
         return view('admin.blog');
     }
 
-    public function contact() {
+    public function contact()
+    {
         return view('admin.contact');
     }
 
-    public function detailBlog($id) {
+    public function detailBlog($id)
+    {
         return view('admin.blog-detail');
     }
 
-    public function footer() {
+    public function footer()
+    {
         return view('admin.footer');
     }
 
-    public function footerStore(Request $request) {
+    public function footerStore(Request $request)
+    {
         $is_valid = $request->validate([
                 'title' => 'required',
                 'alamat' => 'required',
@@ -143,7 +156,7 @@ class AdminController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             // rename and store local file upload
-            $fileName = time().'_'. Str::random(20). '.' . $file->getClientOriginalExtension();  
+            $fileName = time().'_'. Str::random(20). '.' . $file->getClientOriginalExtension();
             $file->move(public_path('images/footer'), $fileName);
         }
 
