@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('visi_misi', function (Blueprint $table) {
+        Schema::create('abouts', function (Blueprint $table) {
             $table->id();
-            $table->text('content_visi');
-            $table->text('content_misi');
+            $table->string('image', 255);
+            $table->text('content');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('visi_misi');
+        Schema::dropIfExists('abouts');
     }
 };

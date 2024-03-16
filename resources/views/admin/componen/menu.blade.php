@@ -8,25 +8,25 @@
      </li>
      <li class="nav-heading">Pages</li>
      <li class="nav-item">
-       <a class="nav-link collapsed" href="#">
+       <a class="nav-link collapsed" href="{{route('about')}}">
          <i class="bi bi-person"></i>
          <span>Tentang MSI</span>
        </a>
      </li>
      <li class="nav-item">
-       <a class="nav-link collapsed" href="#">
+       <a class="nav-link collapsed" href="{{route('slider')}}">
          <i class="bi bi-book"></i>
          <span>Slider</span>
        </a>
      </li>
      <li class="nav-item">
-       <a class="nav-link collapsed" href="#">
+       <a class="nav-link collapsed" href="{{route('visi-misi')}}">
          <i class="bi bi-bookmark"></i>
          <span>Visi dan Misi</span>
        </a>
      </li>
      <li class="nav-item">
-       <a class="nav-link collapsed" href="#">
+       <a class="nav-link collapsed" href="{{route('pengurus')}}">
          <i class="bi bi-diagram-3"></i>
          <span>Pengurus</span>
        </a>
