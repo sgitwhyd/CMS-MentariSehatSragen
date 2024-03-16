@@ -32,4 +32,12 @@ Route::prefix('admin')->group(function () {
    // footer
    Route::get('/footer', [AdminController::class, 'footer'])->name('footer');
    Route::post('/footer', [AdminController::class, 'footerStore']);
+
+   // pengurus
+   Route::get('/teams', [AdminController::class, 'teams'])->name('pengurus');
+   Route::post('/teams', [AdminController::class, 'teamStore']);
+
+   // visi misi
+   Route::get('/visi-misi', [AdminController::class, 'visiMisi'])->name('visi-misi');
+   Route::post('/visi-misi', [AdminController::class, 'visiMisiStore']);
 });
