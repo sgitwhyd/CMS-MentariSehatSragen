@@ -24,7 +24,7 @@
           <form id="form" novalidate>
             @csrf
             <h5 class="card-title">Content</h5>
-            <div class="quill-editor-content"> 
+            <div class="quill-editor-content">
             </div>
             <hr class="my-3">
             <div class="row mb-3">
@@ -42,6 +42,7 @@
     </div>
 
     {{-- list about --}}
+    @if($about)
     <div class="col-12">
       <div class="card">
         <div class="card-body">
@@ -62,6 +63,7 @@
         </div>
       </div>
     </div>
+    @endif
   </div>
 </section>
 
@@ -69,65 +71,48 @@
 
 @section('script')
 <script>
-  "use strict";
-  if ($('.quill-editor-content')) {
-    var quill = new Quill(".quill-editor-content", {
-      modules: {
-        toolbar: [
-          [
-            { font: [] },
-            { size: [] }
-          ],
-          ["bold", "italic", "underline", "strike"],
-          [
-            { color: [] },
-            { background: [] }
-          ],
-          [
-            { script: "super" },
-            { script: "sub" }
-          ],
-          [
-            { list: "ordered" },
-            { list: "bullet" },
-            { indent: "-1" },
-            { indent: "+1" }
-          ],
-          [
-            "direction",
-            { align: [] }
-          ],
-          ["link", "image", "video"],
-          ["clean"]
-        ]
-      },
-      theme: "snow"
-    });
-  }
+"use strict";
 
-  $(document).ready(function() {
-    $('#form').submit(function(e) {
-      e.preventDefault();
-      var content = quill.getContents('ops');
-      console.log(content);
-      return false;
-      var formData = new FormData(this);
-      formData.append('content', content);
 
-      $.ajax({
-        url: "{{ route('aboutStore') }}",
-        type: "POST",
-        data: formData,
-        success: function (msg) {
-          location.reload();
-        },
-        cache: false,
-        contentType: false,
-        processData: false
-      });
-       
-    })
+$(document).ready(function() {
+
+  const quill = new Quill(".quill-editor-content", {
+    modules: {
+      toolbar: [
+        ['bold', 'italic'],
+        ['link', 'blockquote', 'code-block', 'image'],
+        [{
+          list: 'ordered'
+        }, {
+          list: 'bullet'
+        }],
+      ],
+    },
+    theme: "snow"
   });
 
+
+  $('#form').submit(function(e) {
+    e.preventDefault();
+    var content = quill.root.innerHTML;
+
+
+    var formData = new FormData(this);
+    formData.append('content', content);
+
+    $.ajax({
+      url: "{{ route('aboutStore') }}",
+      type: "POST",
+      data: formData,
+      success: function(msg) {
+        location.reload();
+      },
+      cache: false,
+      contentType: false,
+      processData: false
+    });
+
+  })
+});
 </script>
 @endsection
