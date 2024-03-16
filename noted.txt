@@ -17,10 +17,10 @@
 - nama
 - jabatan
 - image
-- layout flex cloumn (sigit)
+- layout flex cloumn (sigit) fix
 
 # blog
-- image layout (sigit)
+- image layout (sigit) fix
 - title
 - description (text)
 - content (form editor)

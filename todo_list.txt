@@ -27,3 +27,6 @@
 -> layouting landing page (slider, about, blog, blog-detail, kontak)
 -> routing setiap halaman
 
+-202403-15
+-> revisi blog card 
+-> revisi layout pengurus
