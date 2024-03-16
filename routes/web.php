@@ -39,5 +39,5 @@ Route::prefix('admin')->group(function () {
 
    // visi misi
    Route::get('/visi-misi', [AdminController::class, 'visiMisi'])->name('visi-misi');
-   Route::post('/visi-misi', [AdminController::class, 'visiMisiStore']);
+   Route::post('/visi-misi', [AdminController::class, 'visiMisiStore'])->name('visiMisiStore');
 });

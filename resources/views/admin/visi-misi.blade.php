@@ -21,7 +21,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <form action="" method="post" novalidate>
+          <form id="form" novalidate>
             @csrf
             <!-- visi content -->
             <h5 class="card-title">VISI</h5>
@@ -29,7 +29,6 @@
               <p>Content for visi here</p>
               <p>Write all about visi</p>
             </div>
-            <textarea style="display:none;" name="visi" id="visi"></textarea>
             <!-- misi content -->
             <h5 class="card-title">MISI</h5>
             <div class="quill-editor-misi" name="misi">
@@ -37,7 +36,7 @@
               <p>Write all about misi</p>
             </div>
             <div class="col-12 mt-3">
-              <button class="btn btn-primary" type="submit" onClick="storeVisiMisi()">Simpan</button>
+              <button class="btn btn-primary" type="submit">Simpan</button>
             </div>
           </form>
         </div>
@@ -50,23 +49,32 @@
 
 @section('script')
 <script>
-  function storeVisiMisi(e) {
-    e.preventDefault();
-    alert('Visi');
-    var visi = document.getElementById('visi').value;
-    var misi = document.getElementById('misi').value;
-    var data = {
-      visi: visi,
-      misi: misi
-    }
-    $.ajax({
-      url: "",
-      method: "POST",
-      data: data,
-      success: function(response) {
-        console.log(response);
+  $(document).ready(function() {
+    $('#form').submit(function(e) {
+      e.preventDefault();
+      var visi = $('.quill-editor-visi').html();
+      var misi = $('.quill-editor-misi').html();
+      var data = {
+        visi: visi,
+        misi: misi
       }
+      $.ajax({
+        url: "{{ route('visiMisiStore') }}",
+        type: "POST",
+        dataType: "json",
+        data: data,
+        headers: {
+          'X-CSRF-TOKEN': $('input[name="_token"]').val(),
+        },
+        success: function(response) {
+          location.reload();
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      });
     })
-  }
+  });
+
 </script>
 @endsection

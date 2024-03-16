@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Footers;
 use App\Models\Teams;
+use App\Models\VisiMisies;
 
 class AdminController extends Controller
 {
@@ -50,16 +51,16 @@ class AdminController extends Controller
     }
 
     public function visiMisiStore(Request $request) {
-        return;
         $is_valid = $request->validate([
             'visi' =>'required',
-          'misi' =>'required',
+            'misi' =>'required',
         ]);
         VisiMisies::create([
             'content_visi' => $request->visi,
-          'content_misi' => $request->misi,
+            'content_misi' => $request->misi,
         ]);
-        return redirect()->route('visi-misi')->with('success', 'Visi dan Misi berhasil ditambahkan');
+        redirect()->back()->with('success', 'Visi Misi berhasil ditambahkan');
+        return response()->json(['success']);
     }
 
     public function blog() {
