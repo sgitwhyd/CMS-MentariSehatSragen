@@ -25,15 +25,11 @@
             @csrf
             <!-- visi content -->
             <h5 class="card-title">VISI</h5>
-            <div class="quill-editor-visi">
-              <p>Content for visi here</p>
-              <p>Write all about visi</p>
+            <div class="quill-editor-visi"> 
             </div>
             <!-- misi content -->
             <h5 class="card-title">MISI</h5>
-            <div class="quill-editor-misi" name="misi">
-              <p>Content for misi here</p>
-              <p>Write all about misi</p>
+            <div class="quill-editor-misi">
             </div>
             <div class="col-12 mt-3">
               <button class="btn btn-primary" type="submit">Simpan</button>
@@ -49,6 +45,76 @@
 
 @section('script')
 <script>
+  if ($('.quill-editor-visi')) {
+    new Quill(".quill-editor-visi", {
+      modules: {
+        toolbar: [
+          [
+            { font: [] },
+            { size: [] }
+          ],
+          ["bold", "italic", "underline", "strike"],
+          [
+            { color: [] },
+            { background: [] }
+          ],
+          [
+            { script: "super" },
+            { script: "sub" }
+          ],
+          [
+            { list: "ordered" },
+            { list: "bullet" },
+            { indent: "-1" },
+            { indent: "+1" }
+          ],
+          [
+            "direction",
+            { align: [] }
+          ],
+          ["link", "image", "video"],
+          ["clean"]
+        ]
+      },
+      theme: "snow"
+    });
+  }
+  
+  if ($('.quill-editor-misi')) {
+    new Quill(".quill-editor-misi", {
+      modules: {
+        toolbar: [
+          [
+            { font: [] },
+            { size: [] }
+          ],
+          ["bold", "italic", "underline", "strike"],
+          [
+            { color: [] },
+            { background: [] }
+          ],
+          [
+            { script: "super" },
+            { script: "sub" }
+          ],
+          [
+            { list: "ordered" },
+            { list: "bullet" },
+            { indent: "-1" },
+            { indent: "+1" }
+          ],
+          [
+            "direction",
+            { align: [] }
+          ],
+          ["link", "image", "video"],
+          ["clean"]
+        ]
+      },
+      theme: "snow"
+    });
+  }
+
   $(document).ready(function() {
     $('#form').submit(function(e) {
       e.preventDefault();

@@ -8,13 +8,13 @@
      </li>
      <li class="nav-heading">Pages</li>
      <li class="nav-item">
-       <a class="nav-link collapsed" href="#">
+       <a class="nav-link collapsed" href="{{route('about')}}">
          <i class="bi bi-person"></i>
          <span>Tentang MSI</span>
        </a>
      </li>
      <li class="nav-item">
-       <a class="nav-link collapsed" href="#">
+       <a class="nav-link collapsed" href="{{route('slider')}}">
          <i class="bi bi-book"></i>
          <span>Slider</span>
        </a>
