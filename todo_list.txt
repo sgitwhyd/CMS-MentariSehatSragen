@@ -1,10 +1,10 @@
 ## incoming
 - source data value
-- database structure
+- modul user management
 
 
 ## progress
-- dashboard admin
+- hapus pengurus list
 
 
 ## bug
@@ -12,7 +12,7 @@
 
 
 ## finish
-- layout landing page
+- 
 
 
 ==================
@@ -25,5 +25,17 @@
 
 - 20240313 -
 -> layouting landing page (slider, about, blog, blog-detail, kontak)
--> routing setiap halaman
+-> routing halaman landing page
 
+- 20240314 -
+-> layouting dashboard page (dashboard, menu, about, footer, pengurus, slider, visi-misi)
+-> routing halaman about, footer, pengurus, slider, visi-misi
+
+- 20240315 -
+-> folder stucture management
+-> modeling all controller
+-> create insert function for all moduls
+
+- 20240316 -
+-> create view reader for all moduls
+-> 
