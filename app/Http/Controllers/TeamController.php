@@ -11,7 +11,7 @@ class TeamController extends Controller
     public function teams()
     {
         $teams = Teams::all();
-        return view('admin.pengurus', compact('teams'));
+        return view('admin.pengurus.index', compact('teams'));
     }
 
     public function teamStore(Request $request)

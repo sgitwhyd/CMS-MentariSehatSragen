@@ -20,35 +20,7 @@ class AdminController extends Controller
     }
 
 
-    public function slider()
-    {
-        return view('admin.slider');
-    }
-
-    public function sliderStore(Request $request)
-    {
-        $is_valid = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'image' =>'required|file|image|mimes:jpg,png,jpeg|max:2048',
-        ]);
-
-        $fileName = "-";
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            // rename and store local file upload
-            $fileName = time().'_'.Str::random(10). '.'. $file->getClientOriginalExtension();
-            $file->move(public_path('images/slider'), $fileName);
-        }
-
-        $slider = new Sliders;
-        $slider->title = $request->title;
-        $slider->description = $request->description;
-        $slider->image = $fileName;
-        $slider->save();
-
-        return redirect()->route('slider')->with('success', 'Slider berhasil ditambahkan');
-    }
+    
 
     public function blog()
     {

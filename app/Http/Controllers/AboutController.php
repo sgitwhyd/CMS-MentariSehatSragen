@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Models\Abouts;
 
 class AboutController extends Controller
 {
     public function about()
     {
         $about = Abouts::get()->last();
-        return view('admin.about', compact('about'));
+        return view('admin.about.index', compact('about'));
     }
 
     public function aboutStore(Request $request)

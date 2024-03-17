@@ -8,6 +8,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\VisiMisiController;
+use App\Http\Controllers\SliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,8 +47,8 @@ Route::prefix('admin')->group(function () {
    Route::post('/visi-misi', [VisiMisiController::class, 'visiMisiStore'])->name('visiMisiStore');
 
    // slider
-   Route::get('/slider', [AdminController::class,'slider'])->name('slider');
-   Route::post('/slider', [AdminController::class,'sliderStore']);
+   Route::get('/slider', [SliderController::class,'slider'])->name('slider');
+   Route::post('/slider', [SliderController::class,'sliderStore']);
 
    // about
    Route::get('/about', [AboutController::class, 'about'])->name('about');

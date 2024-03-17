@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Footers;
 use Illuminate\Support\Str;
+use App\Models\Footers;
 
 class FooterController extends Controller
 {
     public function footer()
     {
         $footer = Footers::get()->last();
-        return view('admin.footer', compact('footer'));
+        return view('admin.footer.index', compact('footer'));
     }
 
     public function footerStore(Request $request)
