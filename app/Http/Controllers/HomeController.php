@@ -3,15 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Abouts;
+use App\Models\Footers;
+use App\Models\Teams;
+use App\Models\VisiMisies;
+use App\Models\Sliders;
+
 
 class HomeController extends Controller
 {
     public function index() {
+         
         return view('dashboard');
     }
-
+    
     public function about() {
-        return view('about');
+        $about = Abouts::get()->last();
+        return view('about', compact('about'));
     }
 
     public function teams() {

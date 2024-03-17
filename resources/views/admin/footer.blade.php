@@ -88,10 +88,63 @@
               <button class="btn btn-primary" type="submit">Simpan</button>
             </div>
           </form><!-- End Custom Styled Validation -->
-
         </div>
       </div>
     </div>
+     <!-- list footer -->
+    @if ($footer)
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">Footer Detail</div>
+            <div class="row mb-2">
+              <div class="col-lg-3 col-md-4 label">Judul</div>
+              <div class="col-lg-9 col-md-8">{{$footer->title}}</div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-lg-3 col-md-4 label">Email</div>
+              <div class="col-lg-9 col-md-8">{{$footer->email}}</div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-lg-3 col-md-4 label">No. Telp</div>
+              <div class="col-lg-9 col-md-8">{{$footer->no_telp}}</div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-lg-3 col-md-4 label">Alamat</div>
+              <div class="col-lg-9 col-md-8">{{$footer->alamat}}</div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-lg-3 col-md-4 label">Facebook</div>
+              <div class="col-lg-9 col-md-8">{{$footer->facebook ? $footer->facebook : "-"}}</div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-lg-3 col-md-4 label">Instagram</div>
+              <div class="col-lg-9 col-md-8">{{$footer->instagram ? $footer->instagram : "-"}}</div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-lg-3 col-md-4 label">Tiktok</div>
+              <div class="col-lg-9 col-md-8">{{$footer->tiktok ? $footer->tiktok : "-"}}</div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-lg-3 col-md-4 label">Twitter</div>
+              <div class="col-lg-9 col-md-8">{{$footer->twitter ? $footer->twitter : "-"}}</div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-lg-3 col-md-4 label">Youtube</div>
+              <div class="col-lg-9 col-md-8">{{$footer->youtube ? $footer->youtube : "-"}}</div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-lg-3 col-md-4 mb-2 label">Gambar Backgroud</div>
+              @if ($footer->image)
+                <img src="{{asset('images/footer/'.$footer->image)}}" alt="">
+              @else
+              <div class="col-lg-9 col-md-8"><span>-</span></div> 
+              @endif
+            </div>
+          </div>
+        </div>
+      </div>
+    @endif
   </div>
 </section>
 

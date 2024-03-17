@@ -22,7 +22,6 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Pengurus</h5>
-
           <form action="" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate="">
             @csrf
             <div class="col-md-6">
@@ -42,20 +41,55 @@
                 <input class="form-control" type="file" id="image" name="image">
               </div>
             </div>
-
             <div class="col-12">
               <button class="btn btn-primary" type="submit">Simpan</button>
             </div>
-          </form><!-- End Custom Styled Validation -->
-
+          </form>
         </div>
       </div>
     </div>
+    <!-- teams list -->
+    @if (count($teams) > 0)
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Daftar Pengurus</h5>          
+          <table class="table datatable-teams">
+            <thead>
+              <tr>
+                <th width="5%">#</th>
+                <th width="30%">Name</th>
+                <th width="30%">Position</th>
+                <th width="25%">Profile</th>
+                <th width="10%">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($teams as $key => $value)
+                <tr>
+                  <td>{{$key + 1}}</td>
+                  <td>{{$value->nama}}</td>
+                  <td>{{$value->jabatan}}</td>
+                  <td><img width="50%" src="{{asset('images/teams/'.$value->image)}}" alt="..."></td>
+                  <td>
+                    <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                  </td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    @endif
   </div>
 </section>
 
 @endsection
 
 @section('script')
+<script>
+  
+</script>
 
 @endsection
