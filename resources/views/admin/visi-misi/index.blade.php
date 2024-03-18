@@ -10,7 +10,7 @@
   <h1>Visi Misi</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Pages</a></li>
       <li class="breadcrumb-item active">Visi Misi</li>
     </ol>
   </nav>

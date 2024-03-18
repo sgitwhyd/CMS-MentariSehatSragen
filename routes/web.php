@@ -9,6 +9,7 @@ use App\Http\Controllers\FooterController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,7 @@ Route::prefix('admin')->group(function () {
    // pengurus
    Route::get('/teams', [TeamController::class, 'teams'])->name('pengurus');
    Route::post('/teams', [TeamController::class, 'teamStore']);
+   Route::delete('/delete/team', [TeamController::class, 'teamDestroy'])->name('teamDelete');
 
    // visi misi
    Route::get('/visi-misi', [VisiMisiController::class, 'visiMisi'])->name('visi-misi');
@@ -52,5 +54,14 @@ Route::prefix('admin')->group(function () {
 
    // about
    Route::get('/about', [AboutController::class, 'about'])->name('about');
-   Route::post('/about', [AboutController::class, 'aboutStore'])->name('aboutStore');   
+   Route::post('/about', [AboutController::class, 'aboutStore'])->name('aboutStore');
+   
+   // contact
+   Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
+   Route::post('/contact', [ContactController::class, 'contactStore']);
+
+   // users
+   Route::get('/users', [AdminController::class, 'users'])->name('user');
+   Route::post('/users', [AdminController::class, 'userStore']);
+   Route::delete('/delete/user', [AdminController::class, 'userDestroy'])->name('userDelete');
 });

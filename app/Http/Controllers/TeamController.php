@@ -37,4 +37,15 @@ class TeamController extends Controller
 
     }
 
+    public function teamDestroy(Request $request) {
+        $team = Teams::find($request->id);
+        $team->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Pengurus berhasil dihapus!',
+        ]); 
+
+    }
+
 }

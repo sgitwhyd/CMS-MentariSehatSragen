@@ -38,10 +38,23 @@
        </a>
      </li>
      <li class="nav-item">
+       <a class="nav-link collapsed" href="{{route('contact')}}">
+         <i class="bi bi-card-text"></i>
+         <span>Kontak</span>
+       </a>
+     </li>
+     <li class="nav-item">
        <a class="nav-link collapsed" href="{{route('footer')}}">
          <i class="bi bi-card-text"></i>
          <span>Footer</span>
        </a>
      </li>
-   </ul>
+     <li class="nav-heading">Management</li>
+     <li class="nav-item">
+      <a class="nav-link collapsed" href="{{route('user')}}">
+        <i class="bi bi-person"></i>
+        <span>Users</span>
+      </a>
+    </li>
+    </ul>
  </aside>

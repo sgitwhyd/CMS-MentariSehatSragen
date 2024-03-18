@@ -10,7 +10,7 @@
   <h1>Pengurus</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Pages</a></li>
       <li class="breadcrumb-item active">Pengurus</li>
     </ol>
   </nav>
@@ -54,7 +54,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Daftar Pengurus</h5>          
-          <table class="table datatable-teams">
+          <table class="table datatable-teams" id="table-teams">
             <thead>
               <tr>
                 <th width="5%">#</th>
@@ -72,7 +72,7 @@
                   <td>{{$value->jabatan}}</td>
                   <td><img width="50%" src="{{asset('images/teams/'.$value->image)}}" alt="..."></td>
                   <td>
-                    <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    <button type="button" class="btn btn-danger deleteTeam" data-id="{{$value->id}}"><i class="bi bi-trash"></i></button>
                   </td>
                 </tr>
               @endforeach
@@ -89,7 +89,24 @@
 
 @section('script')
 <script>
-  
+  $(document).ready(function() {
+    new DataTable('.datatable-teams');
+    $('#table-teams tbody').on('click', '.deleteTeam', function() {
+      var id = $(this).data('id');
+      $.ajax({
+        url: "{{ route('teamDelete') }}",
+        type: "DELETE",
+        data: {
+          'id': id,
+          '_token': "{{ csrf_token() }}"
+        },
+        success: function(msg) {
+          location.reload();
+        },
+      });
+    })
+  });
+
 </script>
 
 @endsection
