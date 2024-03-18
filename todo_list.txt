@@ -43,3 +43,6 @@
 -> create delete function for modul(pengurus, user)
 
 
+-202403-15
+-> revisi blog card 
+-> revisi layout pengurus
