@@ -1,10 +1,9 @@
 ## incoming
 - source data value
-- modul user management
 
 
 ## progress
-- hapus pengurus list
+- 
 
 
 ## bug
@@ -38,4 +37,9 @@
 
 - 20240316 -
 -> create view reader for all moduls
--> 
+
+- 20240318 -
+-> create authorization function
+-> create delete function for modul(pengurus, user)
+
+
