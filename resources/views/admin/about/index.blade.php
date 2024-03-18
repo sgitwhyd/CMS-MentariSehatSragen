@@ -1,17 +1,17 @@
 @extends('admin.layouts.main')
 
 @section('title')
-<title>About</title>
+<title>Tentang MSI</title>
 @endsection
 
 @section('content')
 
 <div class="pagetitle">
-  <h1>About</h1>
+  <h1>Tentang MSI</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item active">About</li>
+      <li class="breadcrumb-item"><a href="#">Pages</a></li>
+      <li class="breadcrumb-item active">Tentang MSI</li>
     </ol>
   </nav>
 </div>
@@ -46,7 +46,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">About Detail</h5>
+          <h5 class="card-title">Tentang MSI Detail</h5>
           <div class="card mb-3">
             <div class="row g-0">
               <div class="col-md-4">

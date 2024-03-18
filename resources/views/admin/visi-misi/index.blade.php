@@ -10,7 +10,7 @@
   <h1>Visi Misi</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Pages</a></li>
       <li class="breadcrumb-item active">Visi Misi</li>
     </ol>
   </nav>
@@ -38,6 +38,26 @@
         </div>
       </div>
     </div>
+    <!-- visi misi list -->
+    @if($visiMisi)
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">Visi dan Misi</div>
+          <div class="row">
+            <div class="col-6">
+              <h5>Visi</h5>
+              {!!$visiMisi->content_visi!!}
+            </div>
+            <div class="col-6">
+              <h5>Misi</h5>
+              {!!$visiMisi->content_misi!!}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    @endif
   </div>
 </section>
 
@@ -45,81 +65,47 @@
 
 @section('script')
 <script>
-  if ($('.quill-editor-visi')) {
-    new Quill(".quill-editor-visi", {
-      modules: {
-        toolbar: [
-          [
-            { font: [] },
-            { size: [] }
-          ],
-          ["bold", "italic", "underline", "strike"],
-          [
-            { color: [] },
-            { background: [] }
-          ],
-          [
-            { script: "super" },
-            { script: "sub" }
-          ],
-          [
-            { list: "ordered" },
-            { list: "bullet" },
-            { indent: "-1" },
-            { indent: "+1" }
-          ],
-          [
-            "direction",
-            { align: [] }
-          ],
-          ["link", "image", "video"],
-          ["clean"]
-        ]
-      },
-      theme: "snow"
-    });
-  }
-  
-  if ($('.quill-editor-misi')) {
-    new Quill(".quill-editor-misi", {
-      modules: {
-        toolbar: [
-          [
-            { font: [] },
-            { size: [] }
-          ],
-          ["bold", "italic", "underline", "strike"],
-          [
-            { color: [] },
-            { background: [] }
-          ],
-          [
-            { script: "super" },
-            { script: "sub" }
-          ],
-          [
-            { list: "ordered" },
-            { list: "bullet" },
-            { indent: "-1" },
-            { indent: "+1" }
-          ],
-          [
-            "direction",
-            { align: [] }
-          ],
-          ["link", "image", "video"],
-          ["clean"]
-        ]
-      },
-      theme: "snow"
-    });
-  }
-
+  "use strict";
   $(document).ready(function() {
+    const vision = new Quill(".quill-editor-visi", {
+      modules: {
+        toolbar: [
+          ["bold", "italic", "underline"],
+          [
+            { list: "ordered" },
+            { list: "bullet" },
+          ],
+          [
+            { align: [] }
+          ],
+          ['link', 'blockquote', 'code-block', 'image'],
+        ]
+      },
+      theme: "snow"
+    });
+  
+    const mision = new Quill(".quill-editor-misi", {
+      modules: {
+        toolbar: [
+          ["bold", "italic", "underline"],
+          [
+            { list: "ordered" },
+            { list: "bullet" },
+          ],
+          [
+            { align: [] }
+          ],
+          ['link', 'blockquote', 'code-block', 'image'],
+        ]
+      },
+      theme: "snow"
+    });
+
     $('#form').submit(function(e) {
       e.preventDefault();
-      var visi = $('.quill-editor-visi').html();
-      var misi = $('.quill-editor-misi').html();
+      var visi = vision.root.innerHTML;
+      var misi = mision.root.innerHTML;
+
       var data = {
         visi: visi,
         misi: misi
@@ -141,6 +127,5 @@
       });
     })
   });
-
 </script>
 @endsection
