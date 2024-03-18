@@ -52,9 +52,9 @@
               <label for="role" class="col-sm-2 col-form-label">Role</label>
               <div class="col-sm-10">
                 <select class="form-select" id="role" name="role" required="">
-                  <option selected>Role...</option>
-                  <option value="admin">Admin</option>
-                  <option value="pengurus">Pengurus</option>
+                  <option value="" selected>Role...</option>
+                  <option value="ADMIN">Administrator</option>
+                  <option value="STAFF">Pengurus</option>
                 </select>
               </div>
             </div>
@@ -89,7 +89,7 @@
                   <td>{{$value->name}}</td>
                   <td>{{$value->username}}</td>
                   <td>{{$value->email}}</td>
-                  <td>{{$value->role}}</td>
+                  <td>{{$value->role == "ADMIN" ? "Administrator" : "Pengurus"}}</td>
                   <td>
                     <button type="button" class="btn btn-danger deleteUser" data-id="{{$value->id}}"><i class="bi bi-trash"></i></button>
                   </td>

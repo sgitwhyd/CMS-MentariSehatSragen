@@ -28,13 +28,14 @@ Route::get('/teams', [HomeController::class, 'teams']);
 Route::get('/blog', [HomeController::class, 'blog']);
 Route::get('/blog-detail/{id}', [HomeController::class, 'detailBlog']);
 Route::get('/contact', [HomeController::class, 'contact']);
+// auth
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'loginVerify']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::prefix('admin')->group(function () {
+Route::middleware(['auth'])->prefix('admin')->group(function () {
    Route::get('/', [AdminController::class, 'index'])->name('admin-dashboard');
-   // auth
-   Route::get('/login', [AuthController::class, 'login'])->name('login');
-   Route::post('/login', [AuthController::class, 'loginVerify']);
-
+   
    // footer
    Route::get('/footer', [FooterController::class, 'footer'])->name('footer');
    Route::post('/footer', [FooterController::class, 'footerStore']);

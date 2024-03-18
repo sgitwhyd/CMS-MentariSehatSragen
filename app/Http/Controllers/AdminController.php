@@ -5,19 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Users;
+use App\Models\User;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        // auth check
-        //
         return view('admin.dashboard');
     }
 
     public function users() {
-        $users = Users::all();
+        $users = User::all();
         return view('admin.user.index', compact('users'));
     }
 
@@ -31,7 +29,7 @@ class AdminController extends Controller
         ]);
 
         if ($is_valid) {
-            Users::create([
+            User::create([
                 'name' => $request->name,
                 'username' => $request->username,
                 'email' => $request->email,
@@ -44,7 +42,7 @@ class AdminController extends Controller
     }
 
     public function userDestroy(Request $request) {
-        $user = Users::find($request->id);
+        $user = User::find($request->id);
         $user->delete();
 
         return response()->json([
