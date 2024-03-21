@@ -82,9 +82,9 @@ const previewImage = () => {
 
 
   imgPreview.style.display = 'block';
-  imgPreview.style.width = '500px';
-  imgPreview.style.height = '300px';
-  imgPreview.style.objectFit = 'cover';
+  imgPreview.style.width = '350px';
+  imgPreview.style.height = '350px';
+  imgPreview.style.objectFit = 'contain';
 
   const fileReader = new FileReader();
   fileReader.readAsDataURL(file);
