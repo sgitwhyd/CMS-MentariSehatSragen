@@ -6,7 +6,6 @@
          <span>Dashboard</span>
        </a>
      </li>
-     @if(session('user')->role == 'ADMIN')
      <li class="nav-heading">Pages</li>
      <li class="nav-item">
        <a class="nav-link collapsed" href="{{route('about')}}">
@@ -32,16 +31,6 @@
          <span>Pengurus</span>
        </a>
      </li>
-     @endif
-     @if(session('user')->role == 'STAFF' || session('user')->role == 'ADMIN')
-     <li class="nav-item">
-       <a class="nav-link collapsed" href="#">
-         <i class="bi bi-calendar-event"></i>
-         <span>Berita dan Kegiatan</span>
-       </a>
-     </li>
-     @endif
-     @if(session('user')->role == 'ADMIN')
      <li class="nav-item">
        <a class="nav-link collapsed" href="{{ route('berita-dan-kegiatan') }}">
          <i class="bi bi-calendar-event"></i>
@@ -64,6 +53,5 @@
          <span>Users</span>
        </a>
      </li>
-     @endif
    </ul>
  </aside>
