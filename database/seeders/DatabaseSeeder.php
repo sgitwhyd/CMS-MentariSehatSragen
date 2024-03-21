@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         Blog::factory(10)->create();
+        $this->call(Users::class);
     }
 }

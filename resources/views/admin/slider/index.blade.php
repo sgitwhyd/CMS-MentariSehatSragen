@@ -10,7 +10,7 @@
   <h1>Slider</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Pages</a></li>
       <li class="breadcrumb-item active">Slider</li>
     </ol>
   </nav>
@@ -44,10 +44,28 @@
               <button class="btn btn-primary" type="submit">Simpan</button>
             </div>
           </form><!-- End Custom Styled Validation -->
-
         </div>
       </div>
     </div>
+    <!-- slider list -->
+    @if (count($slider) > 0)
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">Slider List</div>
+            <div class="row">
+              @foreach ($slider as $key => $value)
+              <div class="col-12 mb-3">
+                <h3>{{$value->title}}</h3>
+                <h5>{{$value->description}}</h5>
+                <img width="100%" src="{{asset('images/slider/'.$value->image)}}" alt="...">
+              </div>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      </div>
+    @endif  
   </div>
 </section>
 
