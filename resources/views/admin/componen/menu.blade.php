@@ -32,7 +32,7 @@
        </a>
      </li>
      <li class="nav-item">
-       <a class="nav-link collapsed" href="#">
+       <a class="nav-link collapsed" href="{{ route('berita-dan-kegiatan') }}">
          <i class="bi bi-calendar-event"></i>
          <span>Berita dan Kegiatan</span>
        </a>
