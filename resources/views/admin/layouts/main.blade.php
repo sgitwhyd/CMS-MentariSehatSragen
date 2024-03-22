@@ -28,6 +28,8 @@
   <link href="{{ asset('dashboard/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
   <link href="{{ asset('dashboard/assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
   <link href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css" rel="stylesheet">
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('dashboard/assets/css/style.css') }}" rel="stylesheet">
@@ -66,6 +68,7 @@
   <script src="{{ asset('dashboard/assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
   <script src="{{ asset('dashboard/assets/vendor/tinymce/tinymce.min.js') }}"></script>
   <script src="{{ asset('dashboard/assets/vendor/php-email-form/validate.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="{{ asset('dashboard/assets/js/main.js') }}"></script>

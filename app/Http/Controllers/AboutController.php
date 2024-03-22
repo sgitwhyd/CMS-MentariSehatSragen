@@ -16,22 +16,43 @@ class AboutController extends Controller
 
     public function aboutStore(Request $request)
     {
-        $is_valid = $request->validate([
-            'content' =>'required',
-            'image' =>'required|file|image|mimes:jpg,png,jpeg|max:2048',
-        ]);
+        // cek data
+        $old_about = Abouts::get()->first();
+        if ($old_about == null) {
+            $is_valid = $request->validate([
+                'content' =>'required',
+                'image' =>'required|file|image|mimes:jpg,png,jpeg|max:2048',
+            ]);
 
-        $fileName = "-";
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            // rename and store local file upload
-            $fileName = time().'_'. Str::random(20). '.'. $file->getClientOriginalExtension();
-            $file->move(public_path('images/about'), $fileName);
+            $fileName = "-";
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                // rename and store local file upload
+                $fileName = time().'_'. Str::random(20). '.'. $file->getClientOriginalExtension();
+                $file->move(public_path('images/about'), $fileName);
+            }
+            $about = new Abouts;
+            $about->image = $fileName;
+            $about->content = $request->content;
+            $about->save();
+            
+            return response()->json(['success' => "Data berhasil disimpan"]);
+
+        } else {
+            $fileName = "-";
+            if($request->hasFile('image')) {
+                unlink(public_path('images/about/').$old_about->image);
+                $file = $request->file('image');
+                // rename and store local file upload
+                $fileName = time().'_'. Str::random(20). '.'. $file->getClientOriginalExtension();
+                $file->move(public_path('images/about'), $fileName);
+                Abouts::where('id', $old_about->id)->update(['image' => $fileName]);
+            }
+            if($request->content != '<p><br></p>') {
+                Abouts::where('id', $old_about->id)->update(['content' => $request->content]);
+            }
+            return response()->json(['success' => "Data berhasil diubah"]);
         }
-        $about = new Abouts;
-        $about->image = $fileName;
-        $about->content = $request->content;
-        $about->save();
 
     }
 

@@ -1,5 +1,6 @@
 ## incoming
 - source data value
+- landing data view
 
 
 ## progress
@@ -34,6 +35,8 @@
 -> folder stucture management
 -> modeling all controller
 -> create insert function for all moduls
+-> revisi blog card 
+-> revisi layout pengurus
 
 - 20240316 -
 -> create view reader for all moduls
@@ -42,7 +45,8 @@
 -> create authorization function
 -> create delete function for modul(pengurus, user)
 
+- 20240323 -
+-> update about content function
+-> add delete slider function
+-> update footer content function
 
--202403-15
--> revisi blog card 
--> revisi layout pengurus

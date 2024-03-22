@@ -54,6 +54,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     // slider
     Route::get('/slider', [SliderController::class,'slider'])->name('slider');
     Route::post('/slider', [SliderController::class,'sliderStore']);
+    Route::post('/slider/destroy', [SliderController::class,'destroy'])->name('slider.destroy');
 
     // about
     Route::get('/about', [AboutController::class, 'about'])->name('about');
