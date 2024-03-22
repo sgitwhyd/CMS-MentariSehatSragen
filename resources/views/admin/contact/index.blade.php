@@ -15,7 +15,8 @@
     </ol>
   </nav>
 </div>
-
+<div class="success-alert" data-alert="{{session('success')}}"></div>
+<div class="danger-alert" data-alert="{{session('error')}}"></div>
 <section class="section dashboard">
   <div class="row">
     <div class="col-12">
@@ -27,22 +28,22 @@
             @csrf
             <div class="col-md-12">
               <label for="maps" class="form-label">Link Gmaps</label>
-              <input type="text" class="form-control" id="maps" name="maps" required="">
+              <input type="text" class="form-control" id="maps" name="maps">
               <div class="invalid-feedback">link Gmaps harus diisi!</div>
             </div>
             <div class="col-md-12">
               <label for="alamat" class="form-label">Alamat</label>
-              <input type="text" class="form-control" id="alamat" name="alamat" required="">
+              <input type="text" class="form-control" id="alamat" name="alamat">
               <div class="invalid-feedback">Alamat harus diisi!</div>
             </div>
             <div class="col-md-6">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" name="email" required="">
+              <input type="email" class="form-control" id="email" name="email">
               <div class="invalid-feedback">Judul harus diisi!</div>
             </div>
             <div class="col-md-6">
               <label for="no_telp" class="form-label">No. Telp</label>
-              <input type="number" class="form-control" id="no_telp" name="no_telp" required="">
+              <input type="number" class="form-control" id="no_telp" name="no_telp">
               <div class="invalid-feedback">Alamat harus diisi!</div>
             </div>
             <div class="col-12">
@@ -84,5 +85,17 @@
 @endsection
 
 @section('script')
-
+<script>
+  $(document).ready(function() {
+    if($('.success-alert').data('alert')) {
+      Swal.fire({
+        icon:'success',
+        title: 'Success',
+        text: $('.success-alert').data('alert'),
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
+  })
+</script>
 @endsection

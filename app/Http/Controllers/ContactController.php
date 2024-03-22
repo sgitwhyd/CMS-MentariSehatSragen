@@ -13,22 +13,35 @@ class ContactController extends Controller
     }
 
     public function contactStore(Request $request) {
-        $is_valid = $request->validate([
-            'alamat' => 'required',
-            'email' =>'required',
-            'no_telp' =>'required',
-            'maps' =>'required',
-        ]);
 
-        if($is_valid) {
-            Contacts::create([
-                'alamat' => $request->alamat,
-                'email' => $request->email,
-                'no_telp' => $request->no_telp,
-                'maps' => $request->maps,
+        $old_contact = Contacts::get()->last();
+        if($old_contact) {
+            Contacts::where('id', $old_contact->id)->update([
+                'alamat' => $request->alamat ? $request->alamat : $old_contact->alamat,
+                'email' => $request->email ? $request->email : $old_contact->email,
+                'no_telp' => $request->no_telp ? $request->no_telp : $old_contact->no_telp,
+                'maps' => $request->maps ? $request->maps : $old_contact->maps,
             ]);
-            return redirect()->route('contact')->with('success', 'Data Berhasil Ditambahkan');
+            return redirect()->route('contact')->with('success', 'Data Berhasil Diubah');
+        } else {
+            $is_valid = $request->validate([
+                'alamat' => 'required',
+                'email' =>'required',
+                'no_telp' =>'required',
+                'maps' =>'required',
+            ]);
+
+            if($is_valid) {
+                Contacts::create([
+                    'alamat' => $request->alamat,
+                    'email' => $request->email,
+                    'no_telp' => $request->no_telp,
+                    'maps' => $request->maps,
+                ]);
+                return redirect()->route('contact')->with('success', 'Data Berhasil Ditambahkan');
+            }
         }
+        
 
     }
 }
