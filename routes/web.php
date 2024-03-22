@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\TeamController;
@@ -26,44 +27,54 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/about', [HomeController::class, 'about']);
 Route::get('/teams', [HomeController::class, 'teams']);
 Route::get('/blog', [HomeController::class, 'blog']);
-Route::get('/blog-detail/{id}', [HomeController::class, 'detailBlog']);
+Route::get('/blog/{blog:slug}', [HomeController::class, 'detailBlog']);
 Route::get('/contact', [HomeController::class, 'contact']);
 // auth
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'loginVerify']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+
 Route::middleware(['auth'])->prefix('admin')->group(function () {
-   Route::get('/', [AdminController::class, 'index'])->name('admin-dashboard');
+    Route::get('/', [AdminController::class, 'index'])->name('admin-dashboard');
    
-   // footer
-   Route::get('/footer', [FooterController::class, 'footer'])->name('footer');
-   Route::post('/footer', [FooterController::class, 'footerStore']);
+    // footer
+    Route::get('/footer', [FooterController::class, 'footer'])->name('footer');
+    Route::post('/footer', [FooterController::class, 'footerStore']);
 
-   // pengurus
-   Route::get('/teams', [TeamController::class, 'teams'])->name('pengurus');
-   Route::post('/teams', [TeamController::class, 'teamStore']);
-   Route::delete('/delete/team', [TeamController::class, 'teamDestroy'])->name('teamDelete');
+    // pengurus
+    Route::get('/teams', [TeamController::class, 'teams'])->name('pengurus');
+    Route::post('/teams', [TeamController::class, 'teamStore']);
+    Route::delete('/delete/team', [TeamController::class, 'teamDestroy'])->name('teamDelete');
 
-   // visi misi
-   Route::get('/visi-misi', [VisiMisiController::class, 'visiMisi'])->name('visi-misi');
-   Route::post('/visi-misi', [VisiMisiController::class, 'visiMisiStore'])->name('visiMisiStore');
+    // visi misi
+    Route::get('/visi-misi', [VisiMisiController::class, 'visiMisi'])->name('visi-misi');
+    Route::post('/visi-misi', [VisiMisiController::class, 'visiMisiStore'])->name('visiMisiStore');
 
-   // slider
-   Route::get('/slider', [SliderController::class,'slider'])->name('slider');
-   Route::post('/slider', [SliderController::class,'sliderStore']);
-   Route::post('/slider/destroy', [SliderController::class,'destroy'])->name('slider.destroy');
+    // slider
+    Route::get('/slider', [SliderController::class,'slider'])->name('slider');
+    Route::post('/slider', [SliderController::class,'sliderStore']);
+    Route::post('/slider/destroy', [SliderController::class,'destroy'])->name('slider.destroy');
 
-   // about
-   Route::get('/about', [AboutController::class, 'about'])->name('about');
-   Route::post('/about', [AboutController::class, 'aboutStore'])->name('aboutStore');
+    // about
+    Route::get('/about', [AboutController::class, 'about'])->name('about');
+    Route::post('/about', [AboutController::class, 'aboutStore'])->name('aboutStore');
    
-   // contact
-   Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
-   Route::post('/contact', [ContactController::class, 'contactStore']);
+    // contact
+    Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
+    Route::post('/contact', [ContactController::class, 'contactStore']);
 
-   // users
-   Route::get('/users', [AdminController::class, 'users'])->name('user');
-   Route::post('/users', [AdminController::class, 'userStore']);
-   Route::delete('/delete/user', [AdminController::class, 'userDestroy'])->name('userDelete');
+    // users
+    Route::get('/users', [AdminController::class, 'users'])->name('user');
+    Route::post('/users', [AdminController::class, 'userStore']);
+    Route::delete('/delete/user', [AdminController::class, 'userDestroy'])->name('userDelete');
+
+    // berita dan kegiatan
+    Route::get('/berita-dan-kegiatan', [BlogController::class, 'index'])->name('berita-dan-kegiatan');
+    Route::get('/berita-dan-kegiatan-create', [BlogController::class, 'create'])->name('berita-dan-kegiatan-create');
+    Route::post('/berita-dan-kegiatan-create', [BlogController::class, 'store'])->name('berita-dan-kegiatan-store');
+    Route::delete('/berita-dan-kegiatan-delete/{blog:id}', [BlogController::class, 'destroy'])->name('berita-dan-kegiatan-delete');
+    Route::get('/berita-dan-kegiatan/edit/{blog:slug}', [BlogController::class, 'edit'])->name('berita-dan-kegiatan-edit');
+    Route::post('/berita-dan-kegiatan/edit/{blog:slug}', [BlogController::class, 'update'])->name('berita-dan-kegiatan-update');
+
 });

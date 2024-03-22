@@ -49,9 +49,9 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Tentang MSI Detail</h5>
-          <div class="card mb-3">
+          <div class="card mb-3 p-5">
             <div class="row g-0">
-              <div class="col-md-4">
+              <div class="col-md-4 d-flex justify-content-center">
                 <img src="{{asset('images/about/'.$about->image)}}" class="img-fluid rounded-start" alt="...">
               </div>
               <div class="col-md-8">

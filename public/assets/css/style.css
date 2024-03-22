@@ -1098,7 +1098,7 @@ section {
     font-size: 16px;
     font-weight: 300;
 }
-
+/* 
 .blog ul {
     padding: 0;
     list-style: none;
@@ -1110,7 +1110,7 @@ section {
 
 .blog ul li {
     padding-bottom: 16px;
-}
+} */
 
 .blog ul i {
     color: #d9232d;
@@ -1404,37 +1404,74 @@ section {
 /*--------------------------------------------------------------
 # Blog
 --------------------------------------------------------------*/
+
+.truncate {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 .blog {
     padding: 40px 0 20px 0;
 }
 
 .blog .entry {
+    position: relative;
+    height: 660px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     padding: 30px;
-    margin-bottom: 60px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.blog .single {
+    position: relative;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 30px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .blog .entry .entry-img {
-    max-height: 440px;
+    height: 300px;
     margin: -30px -30px 20px -30px;
-    overflow: hidden;
+}
+
+.blog .entry .entry-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blog .single .entry-img {
+    height: fit-content;
+    margin: -30px -30px 20px -30px;
+}
+
+.blog .single .entry-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .blog .entry .entry-title {
     font-size: 28px;
     font-weight: bold;
     padding: 0;
-    margin: 0 0 20px 0;
 }
 
-.blog .entry .entry-title a {
+.blog .entry .entry-title {
     color: #556270;
     transition: 0.3s;
 }
 
-.blog .entry .entry-title a:hover {
+/* .blog .entry .entry-title a:hover {
     color: #d9232d;
-}
+} */
 
 .blog .entry .entry-meta {
     color: #c1c8d0;
@@ -1471,6 +1508,9 @@ section {
 .blog .entry .entry-content .read-more {
     -moz-text-align-last: right;
     text-align-last: right;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
 }
 
 .blog .entry .entry-content .read-more a {
