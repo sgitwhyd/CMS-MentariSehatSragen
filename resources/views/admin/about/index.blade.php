@@ -16,6 +16,8 @@
   </nav>
 </div>
 
+<div class="success-alert" data-alert="{{session('success')}}"></div>
+<div class="danger-alert" data-alert="{{session('error')}}"></div>
 <section class="section dashboard">
   <div class="row">
     <div class="col-12">
@@ -96,7 +98,6 @@ $(document).ready(function() {
     e.preventDefault();
     var content = quill.root.innerHTML;
 
-
     var formData = new FormData(this);
     formData.append('content', content);
 
@@ -104,8 +105,16 @@ $(document).ready(function() {
       url: "{{ route('aboutStore') }}",
       type: "POST",
       data: formData,
-      success: function(msg) {
-        location.reload();
+      success: function(result) {
+        Swal.fire({
+          icon:'success',
+          title: 'Success',
+          text: result['success'],
+          showConfirmButton: false,
+          timer: 2000
+        }).then(() => {
+            location.reload()
+        })
       },
       cache: false,
       contentType: false,

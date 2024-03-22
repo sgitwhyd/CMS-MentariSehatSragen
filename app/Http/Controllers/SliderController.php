@@ -38,4 +38,15 @@ class SliderController extends Controller
 
         return redirect()->route('slider')->with('success', 'Slider berhasil ditambahkan');
     }
+
+    public function destroy(Request $request) {
+
+        $slider = Sliders::find($request->id);
+        // remove image local
+        unlink(public_path('images/slider/').$slider->image);
+        // remove from database
+        $slider->delete();
+
+        return response()->json(['success' => 'Slider berhasil dihapus']);
+    }
 }

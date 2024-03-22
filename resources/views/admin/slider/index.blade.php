@@ -16,6 +16,8 @@
   </nav>
 </div><!-- End Page Title -->
 
+<div class="success-alert" data-alert="{{session('success')}}"></div>
+<div class="danger-alert" data-alert="{{session('error')}}"></div>
 <section class="section dashboard">
   <div class="row">
     <div class="col-12">
@@ -56,9 +58,11 @@
             <div class="row">
               @foreach ($slider as $key => $value)
               <div class="col-12 mb-3">
+                <button class="btn mb-2 btn-danger" onclick="sliderDelete('{{$value->id}}')">Hapus</button>
                 <h3>{{$value->title}}</h3>
                 <h5>{{$value->description}}</h5>
                 <img width="100%" src="{{asset('images/slider/'.$value->image)}}" alt="...">
+                <hr class="my-3">
               </div>
               @endforeach
             </div>
@@ -72,5 +76,51 @@
 @endsection
 
 @section('script')
-
+<script>
+  $(document).ready(function() {
+    if($('.success-alert').data('alert')) {
+      Swal.fire({
+        icon:'success',
+        title: 'Success',
+        text: $('.success-alert').data('alert'),
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
+  });
+  function sliderDelete(id) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: "{{route('slider.destroy')}}",
+          type: 'POST',
+          dataType: 'json',
+          data: {
+            'id': id,
+            '_token': "{{ csrf_token() }}"
+          },
+          success: function(result) {
+            Swal.fire({
+              icon:'success',
+              title: 'Success',
+              text: result['success'],
+              showConfirmButton: false,
+              timer: 2000
+            }).then( () => {
+              location.reload();
+            })
+          }
+        })
+      }
+    });
+  }
+</script>
 @endsection

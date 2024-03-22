@@ -19,6 +19,7 @@ class VisiMisiController extends Controller
             'visi' =>'required',
             'misi' =>'required',
         ]);
+        
         VisiMisies::create([
             'content_visi' => $request->visi,
             'content_misi' => $request->misi,

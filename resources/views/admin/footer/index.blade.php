@@ -14,35 +14,36 @@
       <li class="breadcrumb-item active">Footer</li>
     </ol>
   </nav>
-</div><!-- End Page Title -->
+</div>
 
+<div class="success-alert" data-alert="{{session('success')}}"></div>
+<div class="danger-alert" data-alert="{{session('error')}}"></div>
 <section class="section dashboard">
   <div class="row">
     <div class="col-12">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Custom Footer</h5>
-
-          <form action="" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate="">
+          <form action="" method="POST" class="row g-3" id="form" enctype="multipart/form-data">
             @csrf
             <div class="col-md-6">
               <label for="title" class="form-label">Judul</label>
-              <input type="text" class="form-control" id="title" name="title" required="">
+              <input type="text" class="form-control" id="title" name="title">
               <div class="invalid-feedback">Judul harus diisi!</div>
             </div>
             <div class="col-md-6">
               <label for="alamat" class="form-label">Alamat</label>
-              <input type="text" class="form-control" id="alamat" name="alamat" required="">
+              <input type="text" class="form-control" id="alamat" name="alamat">
               <div class="invalid-feedback">Alamat harus diisi!</div>
             </div>
             <div class="col-md-6">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" name="email" required="">
+              <input type="email" class="form-control" id="email" name="email" >
               <div class="invalid-feedback">Judul harus diisi!</div>
             </div>
             <div class="col-md-6">
               <label for="no_telp" class="form-label">No. Telp</label>
-              <input type="number" class="form-control" id="no_telp" name="no_telp" required="">
+              <input type="number" class="form-control" id="no_telp" name="no_telp">
               <div class="invalid-feedback">Alamat harus diisi!</div>
             </div>
             <hr class="my-3">
@@ -83,11 +84,10 @@
                 <input class="form-control" type="file" id="image" name="image">
               </div>
             </div>
-
             <div class="col-12">
               <button class="btn btn-primary" type="submit">Simpan</button>
             </div>
-          </form><!-- End Custom Styled Validation -->
+          </form>
         </div>
       </div>
     </div>
@@ -151,5 +151,24 @@
 @endsection
 
 @section('script')
+<script>
+  $(document).ready(function() {
+    console.log($('.success-alert').data('alert'));
+    if($('.success-alert').data('alert')){
+      Swal.fire({
+        icon:'success',
+        title: 'Success',
+        text: $('.success-alert').data('alert')
+      })
+    }
+    if($('.danger-alert').data('alert')){
+      Swal.fire({
+        icon:'danger',
+        title: 'Error',
+        text: $('.danger-alert').data('alert')
+      })
+    }
+  });
+</script>
 
 @endsection
