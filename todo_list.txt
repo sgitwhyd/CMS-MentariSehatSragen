@@ -50,3 +50,30 @@
 -> add delete slider function
 -> update footer content function
 
+
+
+// bug list
+- implement di landing ( sigit )
+- SEO libary https://github.com/ralphjsmit/laravel-seo ( sigit )
+- fixing tampilan ( sigit )
+- ganti logic simpan image agar menyimpan beserta folder
+
+
+- slider
+	- edit
+	- sort
+- visi misi
+	- bug edit
+	- form default selalu ada isinya
+
+- pengurus
+	- sort
+	- edit
+	
+- blog ( sigit )
+	- bug update title
+	- pagination on blog view
+- contact ( sigit )
+	- form default selalu ada isinya
+- footer ( sigit )
+	- form default selalu ada isinya
