@@ -59,6 +59,10 @@
 -> edit form teams function
 -> add column sort migration teams
 
+-20240324 -
+-> add profile menu
+-> add change password function
+
 
 // bug list
 - implement di landing ( sigit )
