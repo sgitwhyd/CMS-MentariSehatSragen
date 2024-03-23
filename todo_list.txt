@@ -4,7 +4,7 @@
 
 
 ## progress
-- 
+- update slider(bani)
 
 
 ## bug
@@ -45,10 +45,15 @@
 -> create authorization function
 -> create delete function for modul(pengurus, user)
 
-- 20240323 -
+- 20240322 -
 -> update about content function
 -> add delete slider function
 -> update footer content function
+
+- 20240323 -
+-> edit form slider function
+-> add column sort migration slider
+-> saving image folder format
 
 
 

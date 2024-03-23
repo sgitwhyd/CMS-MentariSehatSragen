@@ -24,22 +24,31 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Custom Slider</h5>
-          <form action="" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate="">
+          <form action="" method="POST" class="row g-3" enctype="multipart/form-data">
             @csrf
-            <div class="col-md-6">
-              <label for="title" class="form-label">Judul</label>
-              <input type="text" class="form-control" id="title" name="title" required>
-              <div class="invalid-feedback">Judul harus diisi!</div>
+            <div class="row mb-3">
+              <label for="image" class="col-sm-2 col-form-label">Judul</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" id="title" name="title" required>
+              </div>
             </div>
-            <div class="col-md-6">
-              <label for="description" class="form-label">Deskripsi</label>
-              <input type="text" class="form-control" id="description" name="description">
+            <div class="row mb-3">
+              <label for="image" class="col-sm-2 col-form-label">Deskripsi</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" id="description" name="description" required>
+              </div>
             </div>
-            <hr class="my-3">
             <div class="row mb-3">
               <label for="image" class="col-sm-2 col-form-label">File gambar</label>
               <div class="col-sm-10">
-                <input class="form-control" type="file" id="image" name="image" required>
+                <input class="form-control" type="file" id="image" name="image" onchange="previewImage()" required>
+                <img src="" alt="" class="img-preview img-fluid mb-3 col-sm-5" style="width: 300px;">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="image" class="col-sm-2 col-form-label">Urutan Slider</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="number" id="sort" name="sort" required>
               </div>
             </div>
             <div class="col-12">
@@ -51,25 +60,41 @@
     </div>
     <!-- slider list -->
     @if (count($slider) > 0)
-      <div class="col-12">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-title">Slider List</div>
-            <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Daftar Pengurus</h5>          
+          <table class="table datatable-teams" id="table-teams">
+            <thead>
+              <tr>
+                <th width="5%">#</th>
+                <th width="25%">Judul</th>
+                <th width="30%">Deskripsi</th>
+                <th width="25%">Gambar</th>
+                <th width="5%">Slider</th>
+                <th width="10%">Action</th>
+              </tr>
+            </thead>
+            <tbody>
               @foreach ($slider as $key => $value)
-              <div class="col-12 mb-3">
-                <button class="btn mb-2 btn-danger" onclick="sliderDelete('{{$value->id}}')">Hapus</button>
-                <h3>{{$value->title}}</h3>
-                <h5>{{$value->description}}</h5>
-                <img width="100%" src="{{asset('images/slider/'.$value->image)}}" alt="...">
-                <hr class="my-3">
-              </div>
+                <tr>
+                  <td>{{$key + 1}}</td>
+                  <td>{{$value->title}}</td>
+                  <td>{{$value->description}}</td>
+                  <td><img width="50%" src="{{asset('storage/'.$value->image)}}" alt="..."></td>
+                  <td>{{$value->sort}}</td>
+                  <td>
+                    <button type="button" class="btn btn-danger" onclick="sliderDelete('{{$value->id}}')"><i class="bi bi-trash"></i></button>
+                    <a href="{{route('edit-slider', 'd='.$value->id)}}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
+                  </td>
+                </tr>
               @endforeach
-            </div>
-          </div>
+            </tbody>
+          </table>
         </div>
       </div>
-    @endif  
+    </div>
+    @endif 
   </div>
 </section>
 
@@ -77,50 +102,47 @@
 
 @section('script')
 <script>
-  $(document).ready(function() {
-    if($('.success-alert').data('alert')) {
-      Swal.fire({
-        icon:'success',
-        title: 'Success',
-        text: $('.success-alert').data('alert'),
-        showConfirmButton: false,
-        timer: 1500
+"use strict";
+
+  function sliderDelete(id) {
+    if(confirm('Anda yakin ingin menghapus slider?')){
+      $.ajax({
+        url: "{{route('slider.destroy')}}",
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          'id': id,
+          '_token': "{{ csrf_token() }}"
+        },
+        success: function(result) {
+            location.reload();
+        }
       })
     }
-  });
-  function sliderDelete(id) {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        $.ajax({
-          url: "{{route('slider.destroy')}}",
-          type: 'POST',
-          dataType: 'json',
-          data: {
-            'id': id,
-            '_token': "{{ csrf_token() }}"
-          },
-          success: function(result) {
-            Swal.fire({
-              icon:'success',
-              title: 'Success',
-              text: result['success'],
-              showConfirmButton: false,
-              timer: 2000
-            }).then( () => {
-              location.reload();
-            })
-          }
-        })
-      }
-    });
+  }
+
+  const previewImage = () => {
+    const image = document.querySelector('#image');
+    const imgPreview = document.querySelector('.img-preview');
+
+    const file = image.files[0];
+    if (file.size > 2 * 1024 * 1024) {
+      image.value = '';
+      alert('Image size exceeds 2MB limit. Please choose a smaller image.');
+      return;
+    }
+
+    imgPreview.style.display = 'block';
+    imgPreview.style.width = '500px';
+    imgPreview.style.height = '300px';
+    imgPreview.style.objectFit = 'cover';
+
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+
+    fileReader.onload = function(event) {
+      imgPreview.src = event.target.result;
+    }
   }
 </script>
 @endsection
