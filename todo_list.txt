@@ -54,7 +54,10 @@
 -> edit form slider function
 -> add column sort migration slider
 -> saving image folder format
-
+-> remove menu user management
+-> fix edit visi misi, view content in form
+-> edit form teams function
+-> add column sort migration teams
 
 
 // bug list
@@ -63,18 +66,6 @@
 - fixing tampilan ( sigit )
 - ganti logic simpan image agar menyimpan beserta folder
 
-
-- slider
-	- edit
-	- sort
-- visi misi
-	- bug edit
-	- form default selalu ada isinya
-
-- pengurus
-	- sort
-	- edit
-	
 - blog ( sigit )
 	- bug update title
 	- pagination on blog view
