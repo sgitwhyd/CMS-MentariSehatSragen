@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama', 100);
             $table->string('jabatan', 100);
             $table->string('image', 255);
+            $table->integer('sort')->unsigned();
             $table->timestamps();
         });
     }

@@ -22,23 +22,31 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Pengurus</h5>
-          <form action="" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate="">
+          <form action="" method="POST" class="row g-3" enctype="multipart/form-data">
             @csrf
-            <div class="col-md-6">
-              <label for="nama" class="form-label">Nama</label>
-              <input type="text" class="form-control" id="nama" name="nama" required="">
-              <div class="invalid-feedback">Nama harus diisi!</div>
+            <div class="row mb-3">
+              <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" id="nama" name="nama" value="{{old('nama')}}" required>
+              </div>
             </div>
-            <div class="col-md-6">
-              <label for="jabatan" class="form-label">Jabatan</label>
-              <input type="text" class="form-control" id="jabatan" name="jabatan" required="">
-              <div class="invalid-feedback">Jabatan harus diisi!</div>
+            <div class="row mb-3">
+              <label for="jabatan" class="col-sm-2 col-form-label">Jabatan</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" id="jabatan" name="jabatan" value="{{old('jabatan')}}" required>
+              </div>
             </div>
-            <hr class="my-3">
             <div class="row mb-3">
               <label for="image" class="col-sm-2 col-form-label">File gambar</label>
               <div class="col-sm-10">
-                <input class="form-control" type="file" id="image" name="image">
+                <input class="form-control" type="file" id="image" name="image" onchange="previewImage()" required>
+                <img src="" alt="" class="img-preview img-fluid mb-3 col-sm-5" style="width: 300px;">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="sort" class="col-sm-2 col-form-label">Urutan</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="number" id="sort" name="sort"value="{{old('sort')}}" required>
               </div>
             </div>
             <div class="col-12">
@@ -59,8 +67,9 @@
               <tr>
                 <th width="5%">#</th>
                 <th width="30%">Name</th>
-                <th width="30%">Position</th>
+                <th width="25%">Position</th>
                 <th width="25%">Profile</th>
+                <th width="5%">Urutan</th>
                 <th width="10%">Action</th>
               </tr>
             </thead>
@@ -70,8 +79,10 @@
                   <td>{{$key + 1}}</td>
                   <td>{{$value->nama}}</td>
                   <td>{{$value->jabatan}}</td>
-                  <td><img width="50%" src="{{asset('images/teams/'.$value->image)}}" alt="..."></td>
+                  <td><img width="50%" src="{{asset('storage/'.$value->image)}}" alt="..."></td>
+                  <td>{{$value->sort}}</td>
                   <td>
+                    <a href="{{route('edit-team', 'd='.$value->id)}}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
                     <button type="button" class="btn btn-danger deleteTeam" data-id="{{$value->id}}"><i class="bi bi-trash"></i></button>
                   </td>
                 </tr>
@@ -89,6 +100,7 @@
 
 @section('script')
 <script>
+
   $(document).ready(function() {
     new DataTable('.datatable-teams');
     $('#table-teams tbody').on('click', '.deleteTeam', function() {
@@ -105,7 +117,31 @@
         },
       });
     })
+     
   });
+  function previewImage () {
+    const image = document.querySelector('#image');
+    const imgPreview = document.querySelector('.img-preview');
+
+    const file = image.files[0];
+    if (file.size > 2 * 1024 * 1024) {
+      image.value = '';
+      alert('Image size exceeds 2MB limit. Please choose a smaller image.');
+      return;
+    }
+
+    imgPreview.style.display = 'block';
+    imgPreview.style.width = '500px';
+    imgPreview.style.height = '300px';
+    imgPreview.style.objectFit = 'cover';
+
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+
+    fileReader.onload = function(event) {
+      imgPreview.src = event.target.result;
+    }
+  }
 
 </script>
 

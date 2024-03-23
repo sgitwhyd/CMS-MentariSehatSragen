@@ -45,6 +45,8 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     // pengurus
     Route::get('/teams', [TeamController::class, 'teams'])->name('pengurus');
     Route::post('/teams', [TeamController::class, 'teamStore']);
+    Route::get('/edit-team', [TeamController::class, 'edit'])->name('edit-team');
+    Route::put('/update-team', [TeamController::class, 'update'])->name('update-team');
     Route::delete('/delete/team', [TeamController::class, 'teamDestroy'])->name('teamDelete');
 
     // visi misi
