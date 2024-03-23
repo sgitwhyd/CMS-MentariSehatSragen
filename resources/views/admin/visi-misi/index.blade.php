@@ -25,11 +25,17 @@
             @csrf
             <!-- visi content -->
             <h5 class="card-title">VISI</h5>
-            <div class="quill-editor-visi"> 
+            <div class="quill-editor-visi">
+              @if($visiMisi)
+              {!!$visiMisi->content_visi!!}
+              @endif
             </div>
             <!-- misi content -->
             <h5 class="card-title">MISI</h5>
             <div class="quill-editor-misi">
+              @if($visiMisi)
+              {!!$visiMisi->content_misi!!}
+              @endif
             </div>
             <div class="col-12 mt-3">
               <button class="btn btn-primary" type="submit">Simpan</button>

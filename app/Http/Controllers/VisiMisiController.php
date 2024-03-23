@@ -15,16 +15,25 @@ class VisiMisiController extends Controller
 
     public function visiMisiStore(Request $request)
     {
+        $visiMisi = VisiMisies::get()->last();
         $is_valid = $request->validate([
             'visi' =>'required',
             'misi' =>'required',
         ]);
+        if($visiMisi) {
+            VisiMisies::where('id', $visiMisi->id)->update([
+                'content_visi' => $request->visi,
+                'content_misi' => $request->misi,
+            ]);
+            toastr()->success('Berhasil mengubah Visi Misi');
+        } else {
+            VisiMisies::create([
+                'content_visi' => $request->visi,
+                'content_misi' => $request->misi,
+            ]);
+            toastr()->success('Berhasil menambahkan Visi Misi');
+        }
         
-        VisiMisies::create([
-            'content_visi' => $request->visi,
-            'content_misi' => $request->misi,
-        ]);
-        redirect()->back()->with('success', 'Visi Misi berhasil ditambahkan');
-        return response()->json(['success']);
+        return response()->json(['success' => true]);
     }
 }
