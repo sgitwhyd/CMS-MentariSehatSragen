@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class Users extends Seeder
@@ -18,7 +19,7 @@ class Users extends Seeder
                 'name' => 'Johan saputra',
                 'username' => 'Johan',
                 'email' => 'admin@gmail.com',
-                'password' => bcrypt('12345'),
+                'password' => Hash::make('12345'),
                 'role' => 'ADMIN',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
@@ -27,7 +28,7 @@ class Users extends Seeder
                 'name' => 'Aulia putri',
                 'username' => 'Aulia',
                 'email' => 'staff@gmail.com',
-                'password' => bcrypt('12345'),
+                'password' => Hash::make('12345'),
                 'role' => 'STAFF',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use App\Models\Profiles;
 
 
 class AuthController extends Controller
@@ -27,7 +28,9 @@ class AuthController extends Controller
         ];
         if (Auth::Attempt($data)) {
             $user = Auth::user();
-            Session::put('user', $user);
+            $profile = Profiles::where(['user_id' => $user->id])->get();
+            Session::put('account', ['user' => $user, 'profile' => $profile]);
+            // Session::put('profile', $profile);
             return redirect('admin');
             
         } else {
@@ -39,6 +42,7 @@ class AuthController extends Controller
     public function logout() {
         Auth::logout();
         Session::flush();
+        Session::flash('user', 'profile');
         return redirect('/login');
     }
 }

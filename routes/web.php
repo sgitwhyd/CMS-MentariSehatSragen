@@ -11,6 +11,7 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,4 +82,8 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/berita-dan-kegiatan/edit/{blog:slug}', [BlogController::class, 'edit'])->name('berita-dan-kegiatan-edit');
     Route::post('/berita-dan-kegiatan/edit/{blog:slug}', [BlogController::class, 'update'])->name('berita-dan-kegiatan-update');
 
+    // profile
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/save-profile', [ProfileController::class, 'store'])->name('save-profile');
+    Route::post('/pass-profile', [ProfileController::class, 'changePassword'])->name('change-pass');
 });
