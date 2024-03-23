@@ -21,6 +21,7 @@ class SliderController extends Controller
             'title' => 'required',
             'description' => 'required',
             'image' =>'required|file|image|mimes:jpg,png,jpeg|max:2048',
+            'sort' => 'required|numeric',
         ]);
 
         if($data->fails()) {
@@ -29,17 +30,19 @@ class SliderController extends Controller
             }
             return back()->withInput();
         }
+
+         // cek sort
+        $is_sort = Sliders::where(['sort' => $request->sort])->first();
+        if($is_sort) {
+            toastr()->error('Urutan slider sudah digunakan!');
+            return back()->withInput();
+        }
+
         // store image
         $fileName = "-";
         if ($request->hasFile('image')) {
             $name = time() . '.' . $request->image->extension();
             $fileName = $request->file('image')->store('slider', 'public', $name);
-        }
-        // cek sort
-        $is_sort = Sliders::where(['sort' => $request->sort])->first();
-        if($is_sort) {
-            toastr()->error('Urutan slider sudah digunakan!');
-            return back()->withInput();
         }
 
         try {
@@ -79,14 +82,18 @@ class SliderController extends Controller
     }
 
     public function update(Request $request) {
-        dd($request->all());
-
-        // cek request 
-        $data = Validator::make($request->all(), [
+        $old_slider = Sliders::find($request->id);
+        $post = [
             'title' => 'required',
             'description' => 'required',
-            'image' =>'required|file|image|mimes:jpg,png,jpeg|max:2048',
-        ]);
+            'sort' => 'required',
+        ];
+
+        // cek image request 
+        if($request->hasFile('image')) {
+            $post['image'] = 'file|image|mimes:jpg,png,jpeg|max:2048';
+        }
+        $data = Validator::make($request->all(), $post);
 
         if($data->fails()) {
             foreach ($data->errors()->all() as $message) {
@@ -94,31 +101,33 @@ class SliderController extends Controller
             }
             return back()->withInput();
         }
+
         // store image
-        $fileName = "-";
+        $fileName = $old_slider->image;
         if ($request->hasFile('image')) {
             $name = time() . '.' . $request->image->extension();
             $fileName = $request->file('image')->store('slider', 'public', $name);
+            Storage::delete('public/'. $old_slider->image);
         }
+        
         // cek sort
         $is_sort = Sliders::where(['sort' => $request->sort])->first();
         if($is_sort) {
-            toastr()->error('Urutan slider sudah digunakan!');
-            return back()->withInput();
+            Sliders::where(['id' => $is_sort->id])->update(['sort' => $old_slider->sort]);
         }
 
         try {
-            Sliders::create([
+            Sliders::where(['id' => $request->id])->update([
                'title' => $request->title,
                'description' => $request->description,
                'image' => $fileName,
                'sort' => $request->sort
             ]);
 
-            toastr()->success('Berhasil menambahkan Slider baru!');
+            toastr()->success('Berhasil mengubah Slider!');
 
         } catch (Throwable $th) {
-            toastr()->error('Gagal menambahkan Slider!');
+            toastr()->error('Gagal mengubah Slider!');
         }
 
         return redirect()->route('slider');

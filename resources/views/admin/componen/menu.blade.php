@@ -46,12 +46,12 @@
          <span>Footer</span>
        </a>
      </li>
-     <li class="nav-heading">Management</li>
+     {{-- <li class="nav-heading">Management</li>
      <li class="nav-item">
        <a class="nav-link collapsed" href="{{route('user')}}">
          <i class="bi bi-person"></i>
          <span>Users</span>
        </a>
-     </li>
+     </li> --}}
    </ul>
  </aside>

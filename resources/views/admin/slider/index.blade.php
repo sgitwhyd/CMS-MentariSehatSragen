@@ -29,13 +29,13 @@
             <div class="row mb-3">
               <label for="image" class="col-sm-2 col-form-label">Judul</label>
               <div class="col-sm-10">
-                <input class="form-control" type="text" id="title" name="title" required>
+                <input class="form-control" type="text" id="title" value="{{old('title')}}" name="title" required>
               </div>
             </div>
             <div class="row mb-3">
               <label for="image" class="col-sm-2 col-form-label">Deskripsi</label>
               <div class="col-sm-10">
-                <input class="form-control" type="text" id="description" name="description" required>
+                <input class="form-control" type="text" id="description" value="{{old('description')}}" name="description" required>
               </div>
             </div>
             <div class="row mb-3">
@@ -48,7 +48,7 @@
             <div class="row mb-3">
               <label for="image" class="col-sm-2 col-form-label">Urutan Slider</label>
               <div class="col-sm-10">
-                <input class="form-control" type="number" id="sort" name="sort" required>
+                <input class="form-control" type="number" id="sort" value="{{old('sort')}}" name="sort" required>
               </div>
             </div>
             <div class="col-12">

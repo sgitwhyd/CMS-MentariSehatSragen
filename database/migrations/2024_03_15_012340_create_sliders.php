@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title', 255);
             $table->string('description', 255);
             $table->string('image', 255);
-            $table->integer('sort')->unsigned()->unique();
+            $table->integer('sort')->unsigned();
             $table->timestamps();
         });
     }

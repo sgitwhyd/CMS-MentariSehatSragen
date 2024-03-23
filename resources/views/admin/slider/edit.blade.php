@@ -26,6 +26,7 @@
                <form action="{{route('slider-update')}}" method="POST" class="row g-3" enctype="multipart/form-data">
                @csrf
                @method('PUT')
+               <input type="hidden" name="id" id="id" value="{{$slider->id}}">
                <div class="row mb-3">
                   <label for="image" class="col-sm-2 col-form-label">Judul</label>
                   <div class="col-sm-10">
@@ -35,7 +36,7 @@
                <div class="row mb-3">
                   <label for="image" class="col-sm-2 col-form-label">Deskripsi</label>
                   <div class="col-sm-10">
-                     <input class="form-control" type="text" id="descripttion" name="descripttion" value="{{$slider->description}}">
+                     <input class="form-control" type="text" id="description" name="description" value="{{$slider->description}}">
                   </div>
                </div>
                <div class="row mb-3">
