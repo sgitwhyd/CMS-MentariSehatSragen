@@ -17,9 +17,8 @@ return new class extends Migration
             $table->string('full_name', 200);
             $table->string('company', 200);
             $table->string('job', 100);
-            $table->string('address', 200);
             $table->string('phone', 200);
-            $table->string('image', 200);
+            $table->string('address', 200);
             $table->timestamps();
         });
     }
