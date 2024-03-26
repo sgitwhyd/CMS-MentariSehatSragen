@@ -16,10 +16,10 @@
          </a>
          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
            <li class="dropdown-header">
-            @if(count(Session::get('account')['profile']) > 0)
+             @if(count(Session::get('account')['profile']) > 0)
              <h6>{{Session::get('account')['profile'][0]['full_name']}}</h6>
              <span>{{Session::get('account')['profile'][0]['job']}}</span>
-            @endif
+             @endif
            </li>
            <li>
              <hr class="dropdown-divider">
@@ -27,7 +27,9 @@
            <li>
              <a class="dropdown-item d-flex align-items-center" href="{{route('profile')}}">
                <i class="bi bi-person"></i>
-               <span>My Profile</span>
+               <span>
+                 Change Password
+               </span>
              </a>
            </li>
            <li>

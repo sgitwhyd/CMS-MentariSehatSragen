@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use App\Models\Profile;
+use App\Models\Profiles;
 
 class AdminController extends Controller
 {
@@ -15,12 +15,14 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function users() {
+    public function users()
+    {
         $users = User::all();
         return view('admin.user.index', compact('users'));
     }
 
-    public function userStore(Request $request) {
+    public function userStore(Request $request)
+    {
         $is_valid = $request->validate([
             'name' =>'required',
             'username' =>'required',
@@ -37,18 +39,14 @@ class AdminController extends Controller
                 'password' => Hash::make($request->password),
                 'role' => $request->role,
             ]);
-            // insert profile
-            Profile::create([
-                'user_id' => $new_user->id,
-                'full_name' => $request->name,
-            ]);
 
             return redirect()->route('user')->with('success', 'User berhasil ditambahkan');
         }
 
     }
 
-    public function userDestroy(Request $request) {
+    public function userDestroy(Request $request)
+    {
         $user = User::find($request->id);
         $user->delete();
 

@@ -35,27 +35,6 @@ class Users extends Seeder
                 'updated_at' => date('Y-m-d H:i:s')
             ]
         ]);
-        Profiles::insert([
-            [
-                'user_id' => '1',
-                'full_name' => 'Johan Saputra Nugroho',
-                'company' => 'Mentari sehat indonesia',
-                'job' => 'Manager Marketing',
-                'phone' => '081234567890',
-                'address' => 'Jl. Kebon Jeruk No. 123',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],
-            [
-                'user_id' => '2',
-                'full_name' => 'Aulia Putri',
-                'company' => 'Mentari sehat indonesia',
-                'job' => 'Manager Operation',
-                'phone' => '081234567890',
-                'address' => 'Jl. Kebon Jeruk No. 123',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ]
-        ]);
+       
     }
 }

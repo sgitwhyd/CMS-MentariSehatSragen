@@ -84,6 +84,5 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
     // profile
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-    Route::post('/save-profile', [ProfileController::class, 'store'])->name('save-profile');
-    Route::post('/pass-profile', [ProfileController::class, 'changePassword'])->name('change-pass');
+    Route::post('/update-password', [ProfileController::class, 'changePassword'])->name('change-pass');
 });

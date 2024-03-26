@@ -19,7 +19,7 @@ class BlogFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'slug' => $this->faker->slug,
-            'description' => $this->faker->paragraph,
+            'description' => $this->faker->sentence,
             'user_id' => 1,
             'content' => collect($this->faker->paragraphs(mt_rand(5, 10)))->map(fn ($post) => "<p>$post</p>")->implode(''),
             'image' => $this->faker->imageUrl(),
