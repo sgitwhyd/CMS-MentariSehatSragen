@@ -12,18 +12,11 @@
        <li class="nav-item dropdown pe-3">
          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
            <img src="{{ asset('dashboard/assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-           <span class="d-none d-md-block dropdown-toggle ps-2">{{Session::get('account')['user']['name']}}</span>
+           <span class="d-none d-md-block dropdown-toggle ps-2">
+             {{ Auth::user()->name }}
+           </span>
          </a>
          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-           <li class="dropdown-header">
-             @if(count(Session::get('account')['profile']) > 0)
-             <h6>{{Session::get('account')['profile'][0]['full_name']}}</h6>
-             <span>{{Session::get('account')['profile'][0]['job']}}</span>
-             @endif
-           </li>
-           <li>
-             <hr class="dropdown-divider">
-           </li>
            <li>
              <a class="dropdown-item d-flex align-items-center" href="{{route('profile')}}">
                <i class="bi bi-person"></i>

@@ -22,7 +22,7 @@
       <div class="card">
         <div class="card-body">
           <form id="form" novalidate action="{{ route('berita-dan-kegiatan-update', [
-            'blog' => $blog->slug
+            'id' => $blog->id
           ]) }}">
             @csrf
             <div class="d-flex flex-column mb-3">

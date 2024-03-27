@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Abouts;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class AboutController extends Controller
 {
@@ -16,43 +18,48 @@ class AboutController extends Controller
 
     public function aboutStore(Request $request)
     {
-        // cek data
-        $old_about = Abouts::get()->first();
-        if ($old_about == null) {
-            $is_valid = $request->validate([
-                'content' =>'required',
-                'image' =>'required|file|image|mimes:jpg,png,jpeg|max:2048',
-            ]);
+        $is_valid = Validator::make($request->all(), [
+                 'content' => 'required',
+                 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+             ]);
 
-            $fileName = "-";
-            if ($request->hasFile('image')) {
-                $file = $request->file('image');
-                // rename and store local file upload
-                $fileName = time().'_'. Str::random(20). '.'. $file->getClientOriginalExtension();
-                $file->move(public_path('images/about'), $fileName);
+        if($is_valid->fails()) {
+            if($request->content === '<p><br></p>') {
+                toastr()->error('Content tidak boleh kosong!');
             }
-            $about = new Abouts;
-            $about->image = $fileName;
-            $about->content = $request->content;
-            $about->save();
-            
-            return response()->json(['success' => "Data berhasil disimpan"]);
 
-        } else {
-            $fileName = "-";
-            if($request->hasFile('image')) {
-                unlink(public_path('images/about/').$old_about->image);
-                $file = $request->file('image');
-                // rename and store local file upload
-                $fileName = time().'_'. Str::random(20). '.'. $file->getClientOriginalExtension();
-                $file->move(public_path('images/about'), $fileName);
-                Abouts::where('id', $old_about->id)->update(['image' => $fileName]);
+            foreach ($is_valid->errors()->all() as $message) {
+                toastr()->error($message);
             }
-            if($request->content != '<p><br></p>') {
-                Abouts::where('id', $old_about->id)->update(['content' => $request->content]);
-            }
-            return response()->json(['success' => "Data berhasil diubah"]);
+            return back()->withInput();
         }
+
+        if($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $image = $request->file('image')->store('abouts', 'public', $imageName);
+        } else {
+            $image = null;
+        }
+
+        $old_about = Abouts::get()->last();
+        if($old_about) {
+            Abouts::where('id', $old_about->id)->update([
+                'content' => $request->content ? $request->content : $old_about->content,
+                'image' => $image ? $image : $old_about->image,
+            ]);
+            toastr()->success('Data Berhasil Diubah');
+            return redirect()->back();
+        } else {
+            Abouts::create([
+                'content' => $request->content,
+                'image' => $image,
+            ]);
+            toastr()->success('Data Berhasil Ditambahkan');
+            return redirect()->back();
+        }
+
+
+       
 
     }
 

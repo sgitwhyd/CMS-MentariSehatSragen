@@ -21,51 +21,22 @@
       <p>Mentari Sehat Indonesia</p>
     </div>
     <div class="row justify-content-center" style="row-gap: 20px;">
+      @foreach($teams as $team)
       <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
         <div class="member d-flex flex-column align-items-center">
-          <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="" />
+          <img src="{{ asset('storage/' . $team->image) }}" class="img-fluid" alt="" />
           <div class="member-info">
-            <h4>Walter White</h4>
-            <span>Chief Executive Officer</span>
+            <h4>
+              {{ $team->nama }}
+            </h4>
+            <span>
+              {{ $team->jabatan }}
+            </span>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-        <div class="member d-flex flex-column align-items-center">
-          <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="" />
-          <div class="member-info">
-            <h4>Walter White</h4>
-            <span>Chief Executive Officer</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-        <div class="member d-flex flex-column align-items-center">
-          <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="" />
-          <div class="member-info">
-            <h4>Walter White</h4>
-            <span>Chief Executive Officer</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-        <div class="member d-flex flex-column align-items-center">
-          <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="" />
-          <div class="member-info">
-            <h4>Walter White</h4>
-            <span>Chief Executive Officer</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-        <div class="member d-flex flex-column align-items-center">
-          <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="" />
-          <div class="member-info">
-            <h4>Walter White</h4>
-            <span>Chief Executive Officer</span>
-          </div>
-        </div>
-      </div>
+      @endforeach
+
     </div>
   </div>
 </section><!-- End Team Section -->

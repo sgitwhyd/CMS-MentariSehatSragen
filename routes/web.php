@@ -69,18 +69,14 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
     Route::post('/contact', [ContactController::class, 'contactStore']);
 
-    // users
-    Route::get('/users', [AdminController::class, 'users'])->name('user');
-    Route::post('/users', [AdminController::class, 'userStore']);
-    Route::delete('/delete/user', [AdminController::class, 'userDestroy'])->name('userDelete');
 
     // berita dan kegiatan
     Route::get('/berita-dan-kegiatan', [BlogController::class, 'index'])->name('berita-dan-kegiatan');
-    Route::get('/berita-dan-kegiatan-create', [BlogController::class, 'create'])->name('berita-dan-kegiatan-create');
-    Route::post('/berita-dan-kegiatan-create', [BlogController::class, 'store'])->name('berita-dan-kegiatan-store');
+    Route::get('/berita-dan-kegiatan/create', [BlogController::class, 'create'])->name('berita-dan-kegiatan-create');
+    Route::post('/berita-dan-kegiatan/create', [BlogController::class, 'store'])->name('berita-dan-kegiatan-store');
     Route::delete('/berita-dan-kegiatan-delete/{blog:id}', [BlogController::class, 'destroy'])->name('berita-dan-kegiatan-delete');
-    Route::get('/berita-dan-kegiatan/edit/{blog:slug}', [BlogController::class, 'edit'])->name('berita-dan-kegiatan-edit');
-    Route::post('/berita-dan-kegiatan/edit/{blog:slug}', [BlogController::class, 'update'])->name('berita-dan-kegiatan-update');
+    Route::get('/berita-dan-kegiatan/edit/{blog:id}', [BlogController::class, 'edit'])->name('berita-dan-kegiatan-edit');
+    Route::post('/berita-dan-kegiatan/edit/{id}', [BlogController::class, 'update'])->name('berita-dan-kegiatan-update');
 
     // profile
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

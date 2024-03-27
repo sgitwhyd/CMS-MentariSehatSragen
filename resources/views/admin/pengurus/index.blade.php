@@ -40,13 +40,13 @@
               <label for="image" class="col-sm-2 col-form-label">File gambar</label>
               <div class="col-sm-10">
                 <input class="form-control" type="file" id="image" name="image" onchange="previewImage()" required>
-                <img src="" alt="" class="img-preview img-fluid mb-3 col-sm-5" style="width: 300px;">
+                <img src="" alt="" class="img-preview img-fluid mb-3 mt-3 col-sm-5" style="width: 300px;">
               </div>
             </div>
             <div class="row mb-3">
               <label for="sort" class="col-sm-2 col-form-label">Urutan</label>
               <div class="col-sm-10">
-                <input class="form-control" type="number" id="sort" name="sort"value="{{old('sort')}}" required>
+                <input class="form-control" type="number" id="sort" name="sort" value="{{old('sort')}}" required>
               </div>
             </div>
             <div class="col-12">
@@ -61,31 +61,35 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Daftar Pengurus</h5>          
+          <h5 class="card-title">Daftar Pengurus</h5>
           <table class="table datatable-teams" id="table-teams">
             <thead>
               <tr>
-                <th width="5%">#</th>
-                <th width="30%">Name</th>
-                <th width="25%">Position</th>
-                <th width="25%">Profile</th>
-                <th width="5%">Urutan</th>
-                <th width="10%">Action</th>
+                <th>#</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Profile</th>
+                <th>Urutan</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($teams as $key => $value)
-                <tr>
-                  <td>{{$key + 1}}</td>
-                  <td>{{$value->nama}}</td>
-                  <td>{{$value->jabatan}}</td>
-                  <td><img width="50%" src="{{asset('storage/'.$value->image)}}" alt="..."></td>
-                  <td>{{$value->sort}}</td>
-                  <td>
-                    <a href="{{route('edit-team', 'd='.$value->id)}}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
-                    <button type="button" class="btn btn-danger deleteTeam" data-id="{{$value->id}}"><i class="bi bi-trash"></i></button>
-                  </td>
-                </tr>
+              <tr>
+                <td>{{$key + 1}}</td>
+                <td>{{$value->nama}}</td>
+                <td>{{$value->jabatan}}</td>
+                <td>
+                  <img src="{{asset('storage/'.$value->image)}}" alt="..." style="width: 200px;">
+                </td>
+                <td>{{$value->sort}}</td>
+                <td>
+                  <a href="{{route('edit-team', 'd='.$value->id)}}" class="btn btn-warning"><i
+                      class="bi bi-pencil"></i></a>
+                  <button type="button" class="btn btn-danger deleteTeam" data-id="{{$value->id}}"><i
+                      class="bi bi-trash"></i></button>
+                </td>
+              </tr>
               @endforeach
             </tbody>
           </table>
@@ -100,49 +104,48 @@
 
 @section('script')
 <script>
+$(document).ready(function() {
+  new DataTable('.datatable-teams');
+  $('#table-teams tbody').on('click', '.deleteTeam', function() {
+    var id = $(this).data('id');
+    $.ajax({
+      url: "{{ route('teamDelete') }}",
+      type: "DELETE",
+      data: {
+        'id': id,
+        '_token': "{{ csrf_token() }}"
+      },
+      success: function(msg) {
+        location.reload();
+      },
+    });
+  })
 
-  $(document).ready(function() {
-    new DataTable('.datatable-teams');
-    $('#table-teams tbody').on('click', '.deleteTeam', function() {
-      var id = $(this).data('id');
-      $.ajax({
-        url: "{{ route('teamDelete') }}",
-        type: "DELETE",
-        data: {
-          'id': id,
-          '_token': "{{ csrf_token() }}"
-        },
-        success: function(msg) {
-          location.reload();
-        },
-      });
-    })
-     
-  });
-  function previewImage () {
-    const image = document.querySelector('#image');
-    const imgPreview = document.querySelector('.img-preview');
+});
 
-    const file = image.files[0];
-    if (file.size > 2 * 1024 * 1024) {
-      image.value = '';
-      alert('Image size exceeds 2MB limit. Please choose a smaller image.');
-      return;
-    }
+function previewImage() {
+  const image = document.querySelector('#image');
+  const imgPreview = document.querySelector('.img-preview');
 
-    imgPreview.style.display = 'block';
-    imgPreview.style.width = '500px';
-    imgPreview.style.height = '300px';
-    imgPreview.style.objectFit = 'cover';
-
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-
-    fileReader.onload = function(event) {
-      imgPreview.src = event.target.result;
-    }
+  const file = image.files[0];
+  if (file.size > 2 * 1024 * 1024) {
+    image.value = '';
+    alert('Image size exceeds 2MB limit. Please choose a smaller image.');
+    return;
   }
 
+  imgPreview.style.display = 'block';
+  imgPreview.style.width = '500px';
+  imgPreview.style.height = '300px';
+  imgPreview.style.objectFit = 'cover';
+
+  const fileReader = new FileReader();
+  fileReader.readAsDataURL(file);
+
+  fileReader.onload = function(event) {
+    imgPreview.src = event.target.result;
+  }
+}
 </script>
 
 @endsection

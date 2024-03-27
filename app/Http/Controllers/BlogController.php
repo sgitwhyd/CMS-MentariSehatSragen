@@ -36,12 +36,18 @@ class BlogController extends Controller
     {
         $data = Validator::make($request->all(), [
              'title' => 'required',
-             'description' => 'required|max:125',
-             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+             'description' => 'required|max:255',
+             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
              'content' => 'required'
          ]);
 
+        
+
         if($data->fails()) {
+            if($request->content === '<p><br></p>') {
+                toastr()->error('Content tidak boleh kosong!');
+            }
+
             foreach ($data->errors()->all() as $message) {
                 toastr()->error($message);
             }
@@ -64,7 +70,6 @@ class BlogController extends Controller
             toastr()->success('Berhasil menambahkan berita atau kegiatan baru!');
 
         } catch (\Throwable $th) {
-            dd($th);
             toastr()->error('Gagal menambahkan berita atau kegiatan baru!');
         }
 
@@ -91,21 +96,29 @@ class BlogController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, $id)
     {
+
         $data = Validator::make($request->all(), [
              'title' => 'required',
-             'description' => 'required|max:125',
+             'description' => 'required|max:255',
              'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
              'content' => 'required'
          ]);
 
         if($data->fails()) {
+            if($request->content === '<p><br></p>') {
+                toastr()->error('Content tidak boleh kosong!');
+            }
+            
             foreach ($data->errors()->all() as $message) {
                 toastr()->error($message);
             }
             return back()->withInput();
         }
+
+        $blog = Blog::find($id);
+
 
         if($request->hasFile('image')) {
             Storage::delete('public/' . $blog->image);
@@ -118,7 +131,7 @@ class BlogController extends Controller
         }
 
         try {
-            $blog->update([
+            $blog->where('id', $blog->id)->update([
                'title' => $request->title,
                'slug' => Str::slug($request->title),
                'description' => $request->description,
@@ -128,6 +141,7 @@ class BlogController extends Controller
          ]);
 
             toastr()->success('Berhasil mengubah berita atau kegiatan!');
+            return redirect()->route('berita-dan-kegiatan');
         } catch (\Throwable $th) {
             toastr()->error('Gagal mengubah berita atau kegiatan!');
         }

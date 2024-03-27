@@ -26,58 +26,61 @@
           <h5 class="card-title">Custom Footer</h5>
           <form action="" method="POST" class="row g-3" id="form" enctype="multipart/form-data">
             @csrf
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label for="title" class="form-label">Judul</label>
-              <input type="text" class="form-control" id="title" name="title">
-              <div class="invalid-feedback">Judul harus diisi!</div>
+              <input type="text" class="form-control" id="title" name="title" value="{{ $footer->title ?? '' }}">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label for="alamat" class="form-label">Alamat</label>
-              <input type="text" class="form-control" id="alamat" name="alamat">
-              <div class="invalid-feedback">Alamat harus diisi!</div>
+              <textarea class="form-control" id="alamat" name="alamat" rows="6">{{ $footer->alamat ?? '' }}</textarea>
             </div>
             <div class="col-md-6">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" name="email" >
-              <div class="invalid-feedback">Judul harus diisi!</div>
+              <input type="email" class="form-control" id="email" name="email" value="{{ $footer->email ?? '' }}">
+
             </div>
             <div class="col-md-6">
               <label for="no_telp" class="form-label">No. Telp</label>
-              <input type="number" class="form-control" id="no_telp" name="no_telp">
-              <div class="invalid-feedback">Alamat harus diisi!</div>
+              <input type="number" class="form-control" id="no_telp" name="no_telp"
+                value="{{ $footer->no_telp ?? '' }}">
+
             </div>
-            <hr class="my-3">
+            <hr class=" my-3">
             <div class="row mb-3">
               <label for="facebook" class="col-sm-2 col-form-label">Facebook</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="facebook" name="facebook">
+                <input type="text" class="form-control" id="facebook" name="facebook"
+                  value="{{ $footer->facebook ?? '' }}">
               </div>
             </div>
-            <div class="row mb-3">
+            <div class=" row mb-3">
               <label for="instagram" class="col-sm-2 col-form-label">Instagram</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="instagram" name="instagram">
+                <input type="text" class="form-control" id="instagram" name="instagram"
+                  value="{{ $footer->instagram ?? '' }}">
               </div>
             </div>
-            <div class="row mb-3">
+            <div class=" row mb-3">
               <label for="twitter" class="col-sm-2 col-form-label">Twitter</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="twitter" name="twitter">
+                <input type="text" class="form-control" id="twitter" name="twitter"
+                  value="{{ $footer->twitter ?? '' }}">
               </div>
             </div>
-            <div class="row mb-3">
+            <div class=" row mb-3">
               <label for="tiktok" class="col-sm-2 col-form-label">Tiktok</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="tiktok" name="tiktok">
+                <input type="text" class="form-control" id="tiktok" name="tiktok" value="{{ $footer->tiktok ?? '' }}">
               </div>
             </div>
-            <div class="row mb-3">
+            <div class=" row mb-3">
               <label for="youtube" class="col-sm-2 col-form-label">Youtube</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="youtube" name="youtube">
+                <input type="text" class="form-control" id="youtube" name="youtube"
+                  value="{{ $footer->youtube ?? '' }}">
               </div>
             </div>
-            <hr class="my-3">
+            <hr class=" my-3">
             <div class="row mb-3">
               <label for="image" class="col-sm-2 col-form-label">File gambar</label>
               <div class="col-sm-10">
@@ -91,84 +94,82 @@
         </div>
       </div>
     </div>
-     <!-- list footer -->
+    <!-- list footer -->
     @if ($footer)
-      <div class="col-12">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-title">Footer Detail</div>
-            <div class="row mb-2">
-              <div class="col-lg-3 col-md-4 label">Judul</div>
-              <div class="col-lg-9 col-md-8">{{$footer->title}}</div>
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body p-5">
+          @php
+
+          $bg_footer = asset('images/footer/' . $footer->image);
+
+          @endphp
+          <footer id="footer-admin" style="
+          background-image: url('{{ $bg_footer }}');
+          background-size: cover;
+          background-position: center;
+          ">
+            <div class="footer-top" style="position: relative;">
+              <div class="container">
+                <div class="col-12 mb-5">
+                  <h2 class="text-center mb-3">
+                    {{$footer->title}}
+                  </h2>
+                </div>
+                <div class="col-12 mb-5 text-center">
+                  <div class="social-links mt-3">
+                    @if($footer->twitter)
+                    <a href="{{ $footer->twitter }}" class="twitter"><i class="bx bxl-twitter"></i></a>
+                    @endif
+                    @if($footer->facebook)
+                    <a href="{{ $footer->facebook }}" class="facebook"><i class="bx bxl-facebook"></i></a>
+                    @endif
+                    @if($footer->instagram)
+                    <a href="{{ $footer->instagram }}" class="instagram"><i class="bx bxl-instagram"></i></a>
+                    @endif
+                    @if($footer->tiktok)
+                    <a href="{{ $footer->tiktok }}" class="google-plus"><i class="bx bxl-tiktok"></i></a>
+                    @endif
+                    @if($footer->youtube)
+                    <a href="{{ $footer->youtube }}" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                    @endif
+                  </div>
+                </div>
+                <div class="row text-center">
+                  <div class="col-lg-6 col-md-6">
+                    <div class="footer-info">
+                      <p>
+                        {{ $footer->alamat }}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="footer-info">
+                      <p>
+                        <strong>Phone:</strong>
+                        {{ $footer->no_telp }}
+                        <br>
+                        <strong>Email:</strong>
+                        {{ $footer->email }}
+                        <br>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="row mb-2">
-              <div class="col-lg-3 col-md-4 label">Email</div>
-              <div class="col-lg-9 col-md-8">{{$footer->email}}</div>
+
+            <div class="container" style="position: relative;">
+              <div class="copyright">
+                &copy; Copyright <strong><span>MSI</span></strong>. All Rights Reserved
+              </div>
             </div>
-            <div class="row mb-2">
-              <div class="col-lg-3 col-md-4 label">No. Telp</div>
-              <div class="col-lg-9 col-md-8">{{$footer->no_telp}}</div>
-            </div>
-            <div class="row mb-2">
-              <div class="col-lg-3 col-md-4 label">Alamat</div>
-              <div class="col-lg-9 col-md-8">{{$footer->alamat}}</div>
-            </div>
-            <div class="row mb-2">
-              <div class="col-lg-3 col-md-4 label">Facebook</div>
-              <div class="col-lg-9 col-md-8">{{$footer->facebook ? $footer->facebook : "-"}}</div>
-            </div>
-            <div class="row mb-2">
-              <div class="col-lg-3 col-md-4 label">Instagram</div>
-              <div class="col-lg-9 col-md-8">{{$footer->instagram ? $footer->instagram : "-"}}</div>
-            </div>
-            <div class="row mb-2">
-              <div class="col-lg-3 col-md-4 label">Tiktok</div>
-              <div class="col-lg-9 col-md-8">{{$footer->tiktok ? $footer->tiktok : "-"}}</div>
-            </div>
-            <div class="row mb-2">
-              <div class="col-lg-3 col-md-4 label">Twitter</div>
-              <div class="col-lg-9 col-md-8">{{$footer->twitter ? $footer->twitter : "-"}}</div>
-            </div>
-            <div class="row mb-2">
-              <div class="col-lg-3 col-md-4 label">Youtube</div>
-              <div class="col-lg-9 col-md-8">{{$footer->youtube ? $footer->youtube : "-"}}</div>
-            </div>
-            <div class="row mb-2">
-              <div class="col-lg-3 col-md-4 mb-2 label">Gambar Backgroud</div>
-              @if ($footer->image)
-                <img src="{{asset('images/footer/'.$footer->image)}}" alt="">
-              @else
-              <div class="col-lg-9 col-md-8"><span>-</span></div> 
-              @endif
-            </div>
-          </div>
+          </footer>
         </div>
       </div>
+    </div>
     @endif
   </div>
 </section>
-
-@endsection
-
-@section('script')
-<script>
-  $(document).ready(function() {
-    console.log($('.success-alert').data('alert'));
-    if($('.success-alert').data('alert')){
-      Swal.fire({
-        icon:'success',
-        title: 'Success',
-        text: $('.success-alert').data('alert')
-      })
-    }
-    if($('.danger-alert').data('alert')){
-      Swal.fire({
-        icon:'danger',
-        title: 'Error',
-        text: $('.danger-alert').data('alert')
-      })
-    }
-  });
-</script>
 
 @endsection

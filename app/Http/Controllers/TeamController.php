@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Teams;
+use Throwable;
 
 class TeamController extends Controller
 {
@@ -56,7 +57,7 @@ class TeamController extends Controller
 
     }
 
-    public function teamDestroy(Request $request) 
+    public function teamDestroy(Request $request)
     {
         $team = Teams::find($request->id);
         // remove image local
@@ -67,14 +68,16 @@ class TeamController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function edit(Request $request) {
+    public function edit(Request $request)
+    {
         $pengurus = Teams::find($request->d);
         if($pengurus) {
             return view('admin.pengurus.edit', compact('pengurus'));
         }
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
         $old_team = Teams::find($request->id);
         $post = [
             'nama' => 'required',
@@ -82,7 +85,7 @@ class TeamController extends Controller
             'sort' => 'required',
         ];
 
-        // cek image request 
+        // cek image request
         if($request->hasFile('image')) {
             $post['image'] = 'file|image|mimes:jpg,png,jpeg|max:2048';
         }

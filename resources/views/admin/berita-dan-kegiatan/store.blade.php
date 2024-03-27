@@ -98,26 +98,35 @@ const previewImage = () => {
 
 $(document).ready(function() {
 
+  const toolbarOptions = [
+    [{
+      header: [1, 2, false]
+    }],
+    ['bold', 'italic', 'underline'],
+    ['link', 'blockquote'],
+    [{
+      list: 'ordered'
+    }, {
+      list: 'bullet'
+    }],
+    [{
+      indent: '-1'
+    }, {
+      indent: '+1'
+    }],
+    [{
+      'align': []
+    }],
+    ['clean']
+  ]
+
   const quill = new Quill(".quill-editor-content", {
     modules: {
-      toolbar: [
-        ['bold', 'italic'],
-        ['link', 'blockquote'],
-        [{
-          list: 'ordered'
-        }, {
-          list: 'bullet'
-        }],
-      ],
+      toolbar: toolbarOptions
     },
     theme: "snow",
     placeholder: 'Tulis Detail Berita dan Kegiatan disini...'
   });
-
-
-
-
-
 
   $('#form').submit(function(e) {
     e.preventDefault();

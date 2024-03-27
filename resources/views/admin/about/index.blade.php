@@ -16,8 +16,6 @@
   </nav>
 </div>
 
-<div class="success-alert" data-alert="{{session('success')}}"></div>
-<div class="danger-alert" data-alert="{{session('error')}}"></div>
 <section class="section dashboard">
   <div class="row">
     <div class="col-12">
@@ -26,14 +24,15 @@
           <form id="form" novalidate>
             @csrf
             <h5 class="card-title">Content</h5>
-            <div class="quill-editor-content">
+            <div class="quill-editor-content" style="height: 300px;">
+              @if($about)
+              {!!$about->content!!}
+              @endif
             </div>
             <hr class="my-3">
-            <div class="row mb-3">
+            <div class="d-flex flex-column mb-3">
               <label for="image" class="col-sm-2 col-form-label">File gambar</label>
-              <div class="col-sm-10">
-                <input class="form-control" type="file" id="image" name="image">
-              </div>
+              <input class="form-control" type="file" id="image" name="image">
             </div>
             <div class="col-12 mt-3">
               <button class="btn btn-primary" type="submit">Simpan</button>
@@ -47,21 +46,25 @@
     @if($about)
     <div class="col-12">
       <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Tentang MSI Detail</h5>
-          <div class="card mb-3 p-5">
-            <div class="row g-0">
-              <div class="col-md-4 d-flex justify-content-center">
-                <img src="{{asset('images/about/'.$about->image)}}" class="img-fluid rounded-start" alt="...">
+        <div class="card-body p-5">
+          <section id="about" class="about">
+            <div class="container">
+              <div class="section-title">
+                <h2>Tentang Kami</h2>
+                <p>Mentari Sehat Indonesia</p>
               </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  {{-- <h5 class="card-title">Card with an image on left</h5> --}}
-                  {!!$about->content!!}
+              <div class="row content align-items-center">
+                <div class="col-lg-6 d-flex justify-content-center">
+                  <img src="{{asset('storage/'.$about->image)}}" class="img-fluid" alt="Mentari Sehat Image">
+                </div>
+                <div class="col-lg-6 pt-4 pt-lg-0">
+                  <div class="text-content">
+                    {!!$about->content!!}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </div>
       </div>
     </div>
@@ -78,19 +81,34 @@
 
 $(document).ready(function() {
 
+  const toolbarOptions = [
+    [{
+      header: [1, 2, false]
+    }],
+    ['bold', 'italic', 'underline'],
+    ['link', 'blockquote'],
+    [{
+      list: 'ordered'
+    }, {
+      list: 'bullet'
+    }],
+    [{
+      indent: '-1'
+    }, {
+      indent: '+1'
+    }],
+    [{
+      'align': []
+    }],
+    ['clean']
+  ]
+
   const quill = new Quill(".quill-editor-content", {
     modules: {
-      toolbar: [
-        ['bold', 'italic'],
-        ['link', 'blockquote', 'code-block', 'image'],
-        [{
-          list: 'ordered'
-        }, {
-          list: 'bullet'
-        }],
-      ],
+      toolbar: toolbarOptions
     },
-    theme: "snow"
+    theme: "snow",
+    placeholder: 'Tulis Tentang MSI disini..'
   });
 
 
@@ -106,15 +124,7 @@ $(document).ready(function() {
       type: "POST",
       data: formData,
       success: function(result) {
-        Swal.fire({
-          icon:'success',
-          title: 'Success',
-          text: result['success'],
-          showConfirmButton: false,
-          timer: 2000
-        }).then(() => {
-            location.reload()
-        })
+        location.reload();
       },
       cache: false,
       contentType: false,

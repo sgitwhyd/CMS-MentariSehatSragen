@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use App\Models\Abouts;
+use App\Models\Contacts;
 use App\Models\Footers;
 use App\Models\Teams;
 use App\Models\VisiMisies;
@@ -14,8 +15,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-         
-        return view('dashboard');
+        $about = Abouts::get()->last();
+        $visimisi = VisiMisies::get()->last();
+        $blogs = Blog::orderBy('created_at', 'desc')->limit(3)->get();
+        $teams = Teams::orderBy('sort', 'asc')->get();
+        $sliders = Sliders::orderBy('sort', 'asc')->get();
+        return view('index', compact('about', 'visimisi', 'blogs', 'teams', 'sliders'));
     }
     
     public function about()
@@ -26,7 +31,8 @@ class HomeController extends Controller
 
     public function teams()
     {
-        return view('pengurus');
+        $teams = Teams::orderBy('sort', 'asc')->get();
+        return view('pengurus', compact('teams'));
     }
 
     public function blog()
@@ -43,6 +49,7 @@ class HomeController extends Controller
 
     public function contact()
     {
-        return view('contact');
+        $contact = Contacts::get()->last();
+        return view('contact', compact('contact'));
     }
 }
