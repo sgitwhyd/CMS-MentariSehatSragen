@@ -5,14 +5,17 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Sailor Bootstrap Template - Index</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  {!! SEO::generate() !!}
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-
-  <!-- Favicons -->
-  <link href="{{url('assets/img/favicon.png')}}" rel="icon">
-  <link href="{{url('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="apple-mobile-web-app-title" content="Mentari Sehat Indonesia Kabupaten Sragen">
+  <meta name="application-name" content="Mentari Sehat Indonesia Kabupaten Sragen">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
 
   <!-- Google Fonts -->
   <link
@@ -39,11 +42,8 @@
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
-      <!-- <h1 class="logo me-auto"><a href="#">Mentari</a></h1> -->
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <a href="#" class="logo me-auto"><img
-          src="https://mentarisehatindonesiakabdemak.com/public/assets/img/navbar-logo.png" alt=""
-          class="img-fluid"></a>
+
+      <a href="/" class="logo me-auto"><img src="{{ url('assets/logo.png') }}" alt="" class="img-fluid"></a>
 
       @include('layouts.navbar')
 

@@ -115,15 +115,13 @@
       <div class="col-lg-4 col-md-6">
         <div class="box entry">
           <div class="pic">
-            <img src="{{ asset('assets/img/blog/blog-1.jpg')}}" alt="">
+            <img src="{{ asset('storage/' . $blog->image)}}" alt="{{ $blog->title }}-image">
           </div>
           <h4>
             {{ $blog->title }}
           </h4>
           <div class="entry-meta">
             <ul>
-              <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a>
-              </li>
               <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html">
                   {{ date('d F Y', strtotime($blog->created_at)) }}
                 </a></li>

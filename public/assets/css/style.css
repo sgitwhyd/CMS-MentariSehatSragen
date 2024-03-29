@@ -493,7 +493,7 @@ h6 {
 }
 
 #hero .btn-get-started:hover {
-    background: #df3740;
+    background: var(--secondary);
 }
 
 @media (max-width: 992px) {
@@ -1539,7 +1539,7 @@ section {
 }
 
 .blog .entry .entry-content .read-more a:hover {
-    background: #df3740;
+    background: var(--secondary);
 }
 
 .blog .entry .entry-content h3 {
@@ -2104,7 +2104,7 @@ section {
 }
 
 #footer .footer-top .footer-newsletter form input[type="submit"]:hover {
-    background: #df3740;
+    background: var(--secondary);
 }
 
 #footer .copyright {

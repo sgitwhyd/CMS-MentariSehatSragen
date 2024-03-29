@@ -31,8 +31,6 @@
           </h2>
           <div class="entry-meta">
             <ul>
-              <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a>
-              </li>
               <li class="d-flex align-items-center"><i class="bi bi-clock"></i>
                 {{ date('d F Y', strtotime($blog->created_at)) }}
               </li>
