@@ -33,11 +33,11 @@ class FooterController extends Controller
                 'email' => $request->email ? $request->email : $old_footer->email,
                 'alamat' => $request->alamat ? $request->alamat : $old_footer->alamat,
                 'no_telp' => $request->no_telp ? $request->no_telp : $old_footer->no_telp,
-                'facebook' => $request->facebook ? $request->facebook : $old_footer->facebook,
-                'instagram' => $request->instagram? $request->instagram : $old_footer->instagram,
-                'twitter' => $request->twitter ? $request->twitter : $old_footer->twitter,
-                'youtube' => $request->youtube ? $request->youtube : $old_footer->youtube,
-                'tiktok' => $request->tiktok ? $request->tiktok : $old_footer->tiktok,
+                'facebook' => $request->facebook,
+                'instagram' => $request->instagram,
+                'twitter' => $request->twitter,
+                'youtube' => $request->youtube,
+                'tiktok' => $request->tiktok,
                 'image' => $fileName,
             ]);
             return redirect()->route('footer')->with('success', 'Footer berhasil diubah');
