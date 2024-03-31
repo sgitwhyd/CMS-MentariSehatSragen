@@ -3,13 +3,6 @@
 @section('content')
 <!-- ======= Breadcrumbs ======= -->
 <section id="breadcrumbs" class="breadcrumbs">
-  <div class="container">
-    <div class="d-flex justify-content-between align-items-center">
-      <ol>
-        <li>Berita dan Kegiatan</li>
-      </ol>
-    </div>
-  </div>
 </section><!-- End Breadcrumbs -->
 
 <!-- ======= Blog Section ======= -->
@@ -50,13 +43,9 @@
       </div>
       @endforeach
 
-      <div class="blog-pagination">
-        <ul class="justify-content-center">
-          <li><a href="#">1</a></li>
-          <li class="active"><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-        </ul>
-      </div>
+      {{ $blogs->links() }}
+
+
     </div>
 </section><!-- End Blog Section -->
 @endsection

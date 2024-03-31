@@ -37,8 +37,6 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('admin-dashboard');
-   
     // footer
     Route::get('/footer', [FooterController::class, 'footer'])->name('footer');
     Route::post('/footer', [FooterController::class, 'footerStore']);

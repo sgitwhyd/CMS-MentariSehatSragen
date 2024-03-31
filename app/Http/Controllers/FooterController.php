@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Footers;
+use Illuminate\Support\Facades\Storage;
 
 class FooterController extends Controller
 {
@@ -17,16 +18,23 @@ class FooterController extends Controller
     public function footerStore(Request $request)
     {
         $old_footer = Footers::get()->last();
+        $image = null;
         if($old_footer) {
-            // jika gambar ganti
-            $fileName = $old_footer->image;
+
             if ($request->hasFile('image')) {
-                $file = $request->file('image');
-                // rename and store local file upload
-                $fileName = time().'_'. Str::random(20). '.' . $file->getClientOriginalExtension();
-                $file->move(public_path('images/footer'), $fileName);
-                unlink(public_path('images/footer/').$old_footer->image);
+              
+                if($old_footer->image) {
+                    Storage::disk('public')->delete($old_footer->image);
+                }
+
+                $imageName = time() . '.' . $request->image->extension();
+                $image = $request->file('image')->store('footer', 'public', $imageName);
+
+
             }
+
+           
+
             // update
             Footers::where('id', $old_footer->id)->update([
                 'title' => $request->title ? $request->title : $old_footer->title,
@@ -38,7 +46,7 @@ class FooterController extends Controller
                 'twitter' => $request->twitter,
                 'youtube' => $request->youtube,
                 'tiktok' => $request->tiktok,
-                'image' => $fileName,
+                'image' => $request->image ? $image : $old_footer->image,
             ]);
             return redirect()->route('footer')->with('success', 'Footer berhasil diubah');
         } else {
@@ -47,32 +55,32 @@ class FooterController extends Controller
                 'alamat' => 'required',
                 'email' => 'required',
                 'no_telp' => 'required',
-                'image' => 'required|file|image|mimes:jpg,png,jpeg|max:2048',
+                'image' => 'file|image|mimes:jpg,png,jpeg|max:2048',
             ]);
-            $fileName = "-";
             if ($request->hasFile('image')) {
-                $file = $request->file('image');
-                // rename and store local file upload
-                $fileName = time().'_'. Str::random(20). '.' . $file->getClientOriginalExtension();
-                $file->move(public_path('images/footer'), $fileName);
+                $imageName = time() . '.' . $request->image->extension();
+                $image = $request->file('image')->store('blogs', 'public', $imageName);
+
+                if($is_valid) {
+                    $footer = new Footers;
+                    $footer->title = $request->title;
+                    $footer->email = $request->email;
+                    $footer->alamat = $request->alamat;
+                    $footer->no_telp = $request->no_telp;
+                    $footer->facebook = $request->facebook;
+                    $footer->instagram = $request->instagram;
+                    $footer->twitter = $request->twitter;
+                    $footer->tiktok = $request->tiktok;
+                    $footer->youtube = $request->youtube;
+                    $footer->image = $image;
+                    $footer->save();
+                
+                    return redirect()->route('footer')->with('success', 'Footer berhasil ditambahkan');
+                }
+
             }
             
-            if($is_valid) {
-                $footer = new Footers;
-                $footer->title = $request->title;
-                $footer->email = $request->email;
-                $footer->alamat = $request->alamat;
-                $footer->no_telp = $request->no_telp;
-                $footer->facebook = $request->facebook;
-                $footer->instagram = $request->instagram;
-                $footer->twitter = $request->twitter;
-                $footer->tiktok = $request->tiktok;
-                $footer->youtube = $request->youtube;
-                $footer->image = $fileName;
-                $footer->save();
-                
-                return redirect()->route('footer')->with('success', 'Footer berhasil ditambahkan');
-            }
+           
         }
     }
 }

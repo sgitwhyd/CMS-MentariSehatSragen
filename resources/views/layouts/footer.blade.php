@@ -1,6 +1,6 @@
  @php
  $footer = App\Models\Footers::get()->last();
- $bg_footer = asset('images/footer/' . $footer->image);
+ $bg_footer = asset('storage/' . $footer->image);
  @endphp
 
  <footer id="footer" style="

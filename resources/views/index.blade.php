@@ -112,30 +112,33 @@
     </div>
     <div class="row justify-content-center" style="row-gap: 24px;">
       @foreach($blogs as $blog)
-      <div class="col-lg-4 col-md-6">
-        <div class="box entry">
-          <div class="pic">
-            <img src="{{ asset('storage/' . $blog->image)}}" alt="{{ $blog->title }}-image">
+      <div class="col-lg-4 col-md-6 entries">
+        <article class="entry">
+          <div class="entry-img">
+            <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->title }} blog image">
           </div>
-          <h4>
-            {{ $blog->title }}
-          </h4>
+          <h2 class="entry-title truncate">
+            {{$blog->title}}
+          </h2>
           <div class="entry-meta">
             <ul>
-              <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html">
-                  {{ date('d F Y', strtotime($blog->created_at)) }}
-                </a></li>
+              <li class="d-flex align-items-center"><i class="bi bi-clock"></i>
+                {{ date('d F Y', strtotime($blog->created_at)) }}
+              </li>
             </ul>
           </div>
-          <p>
-            {{ $blog->description }}
-          </p>
-          <div class="btn-wrap">
-            <a href="/blog/{{ $blog->slug }}" class="btn-buy">Selengkapnya...</a>
+          <div class="entry-content">
+            <p class="truncate">
+              {{$blog->description}}
+            </p>
+            <div class="btn-wrap">
+              <a href="/blog/{{ $blog->slug }}" class="btn-buy">Selengkapnya...</a>
+            </div>
           </div>
-        </div>
+        </article>
       </div>
       @endforeach
+
 
 
     </div>

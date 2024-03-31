@@ -101,7 +101,7 @@
         <div class="card-body p-5">
           @php
 
-          $bg_footer = asset('images/footer/' . $footer->image);
+          $bg_footer = asset('storage/' . $footer->image);
 
           @endphp
           <footer id="footer-admin" style="

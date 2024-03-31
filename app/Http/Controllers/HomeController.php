@@ -49,7 +49,7 @@ class HomeController extends Controller
         );
         SEOTools::opengraph()->setUrl(url()->current());
 
-        $blogs = Blog::orderBy('created_at', 'desc')->get();
+        $blogs = Blog::orderBy('created_at', 'desc')->paginate(6);
         return view('blog', compact('blogs'));
     }
 

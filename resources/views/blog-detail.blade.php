@@ -6,8 +6,14 @@
   <div class="container">
     <div class="d-flex justify-content-between align-items-center">
       <ol>
-        <li><a href="{{'/blog'}}">Berita dan Kegiatan</a></li>
-        <li>Blog Detail</li>
+        <li>
+          <a href="/blog">
+            Berita dan Kegiatan
+          </a>
+        </li>
+        <li>
+          {{ $blog->title }}
+        </li>
       </ol>
     </div>
   </div>
@@ -19,7 +25,7 @@
     <div class="row">
       <div class="col-12 entries">
         <article class="entry single">
-          <div class="entry-img">
+          <div class="entry-img-detail">
             <img src="{{ asset('storage/' . $blog->image) }}" alt="">
           </div>
           <h2 class="entry-title">
@@ -28,9 +34,6 @@
 
           <div class="entry-meta">
             <ul>
-              <li class="d-flex align-items-center"><i class="bi bi-person"></i>
-                John Doe
-              </li>
               <li class="d-flex align-items-center">
                 <i class="bi bi-clock"></i>
                 {{ date('d F Y', strtotime($blog->created_at)) }}

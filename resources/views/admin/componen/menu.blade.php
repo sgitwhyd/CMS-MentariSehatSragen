@@ -1,11 +1,6 @@
  <aside id="sidebar" class="sidebar">
    <ul class="sidebar-nav" id="sidebar-nav">
-     <li class="nav-item">
-       <a class="nav-link {{ request()->routeIs('dashboard') ? '' : 'collapsed' }}" href="#">
-         <i class="bi bi-grid"></i>
-         <span>Dashboard</span>
-       </a>
-     </li>
+
      <li class="nav-heading">Pages</li>
      <li class="nav-item">
        <a class="nav-link {{ request()->routeIs('about') ? '' : 'collapsed' }}" href="{{ route('about') }}">

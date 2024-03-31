@@ -411,7 +411,7 @@ h6 {
 
 #hero .carousel-inner .carousel-item {
     transition-property: opacity;
-    background-position: center top;
+    /* background-position: center top; */
 }
 
 #hero .carousel-inner .carousel-item,
@@ -611,7 +611,7 @@ section {
 
 @media (max-width: 992px) {
     .breadcrumbs {
-        margin-top: 58px;
+        margin-top: 100px;
     }
 
     .breadcrumbs .d-flex {
@@ -1138,7 +1138,10 @@ section {
 }
 
 .blog .btn-wrap {
-    margin: 20px -20px -20px -20px;
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
     padding: 20px 15px;
     background: #f8f8f8;
     text-align: center;
@@ -1473,6 +1476,12 @@ section {
     object-fit: cover;
 }
 
+.blog .single .entry-img-detail img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
 .blog .entry .entry-title {
     font-size: 28px;
     font-weight: bold;
@@ -1796,7 +1805,7 @@ section {
 
 .blog .blog-pagination li a {
     color: #556270;
-    padding: 7px 16px;
+    /* padding: 7px 16px; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2141,3 +2150,13 @@ section {
     text-align: right;
 }
 
+.blog .blog-pagination .active >.page-link {
+    background-color: #019b50;
+    border: 1px solid #019b50;
+}
+
+.blog .blog-pagination .page-link:hover {
+    background-color: #019b50;
+    border: 1px solid #019b50;
+    color: #fff;
+}

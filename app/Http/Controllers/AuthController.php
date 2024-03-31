@@ -14,7 +14,7 @@ class AuthController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            return redirect('admin');
+            return redirect()->route('about');
         } else {
             return view('admin.auth.login');
         }
@@ -28,7 +28,7 @@ class AuthController extends Controller
         ];
         if (Auth::Attempt($data)) {
     
-            return redirect('admin');
+            return redirect()->route('about');
             
         } else {
             Session::flash('error', 'Username atau Password Salah');
