@@ -31,7 +31,7 @@
   <link href="{{ url('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="{{ url('assets/css/style.css') }}" rel="stylesheet">
+  <link href="{{ minify('/css/public/style.css') }}" rel="stylesheet">
 
 </head>
 
@@ -71,7 +71,7 @@
   <script src="{{ url('assets/vendor/php-email-form/validate.js') }}"></script>
 
   <!-- Template Main JS File -->
-  <script src="{{ url('assets/js/main.js') }}"></script>
+  <script src="{{ minify('/js/public/main.js') }}"></script>
   @yield('script')
 
 </body>

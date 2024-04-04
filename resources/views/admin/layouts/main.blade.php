@@ -39,7 +39,7 @@
 
 
   <!-- Template Main CSS File -->
-  <link href="{{ asset('dashboard/assets/css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('dashboard/assets/css/style-min.css') }}" rel="stylesheet">
 
 </head>
 
@@ -78,7 +78,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="{{ asset('dashboard/assets/js/main.js') }}"></script>
+  <script src="{{ asset('dashboard/assets/js/main-min.js') }}"></script>
   @yield('script')
 
 </body>
