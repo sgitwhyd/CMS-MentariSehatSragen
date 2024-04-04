@@ -29,8 +29,11 @@
             </div>
             <div class="d-flex flex-column mb-3">
               <label for="decription" class="card-title">Deskripsi</label>
-              <textarea class="form-control" name="description"
+              <textarea class="form-control" name="description" id="description" onchange="onDecriptionChange()"
                 style="height: 100px">{{ old('description') }}</textarea>
+              <small id="descriptionHelp" class="form-text text-muted mt-2">Deskripsi tidak boleh lebih dari 255
+                karakter
+              </small>
             </div>
 
             <div class="d-flex flex-column mb-3">
@@ -67,6 +70,13 @@
 <script>
 "use strict";
 
+function onDecriptionChange() {
+  const description = document.querySelector('#description').value;
+  if (description.length > 255) {
+    alert('Deskripsi tidak boleh lebih dari 255 karakter');
+    document.querySelector('#description').value = description.substring(0, 255);
+  }
+}
 
 const previewImage = () => {
   const image = document.querySelector('#image');
@@ -83,7 +93,7 @@ const previewImage = () => {
 
   imgPreview.style.display = 'block';
   imgPreview.style.width = '350px';
-  imgPreview.style.height = '350px';
+  imgPreview.style.maxHeight = '350px';
   imgPreview.style.objectFit = 'contain';
 
   const fileReader = new FileReader();
@@ -92,6 +102,8 @@ const previewImage = () => {
   fileReader.onload = function(event) {
     imgPreview.src = event.target.result;
   }
+
+
 
 }
 

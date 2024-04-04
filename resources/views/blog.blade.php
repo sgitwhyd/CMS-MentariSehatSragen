@@ -30,7 +30,7 @@
             </ul>
           </div>
           <div class="entry-content">
-            <p class="truncate">
+            <p>
               {{$blog->description}}
             </p>
             <div class="read-more">

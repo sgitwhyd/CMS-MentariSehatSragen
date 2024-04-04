@@ -43,7 +43,7 @@ h6 {
 # Main
 --------------------------------------------------------------*/
 #main {
-    margin-top: 60px;
+    margin-top: 100px;
     padding: 20px 30px;
     transition: all 0.3s;
 }
@@ -380,7 +380,7 @@ h6 {
 .header {
     transition: all 0.5s;
     z-index: 997;
-    height: 60px;
+    height: fit-content;
     box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
     background-color: #fff;
     padding-left: 20px;
@@ -600,7 +600,7 @@ h6 {
 --------------------------------------------------------------*/
 .sidebar {
     position: fixed;
-    top: 60px;
+    top: 50px;
     left: 0;
     bottom: 0;
     width: 300px;

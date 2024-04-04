@@ -17,7 +17,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::orderBy('created_at', 'desc')->get();
         return view('admin.berita-dan-kegiatan.index', compact('blogs'));
     }
 
@@ -37,7 +37,7 @@ class BlogController extends Controller
         $data = Validator::make($request->all(), [
              'title' => 'required',
              'description' => 'required|max:255',
-             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
              'content' => 'required'
          ]);
 
@@ -64,7 +64,6 @@ class BlogController extends Controller
                'description' => $request->description,
                'image' => $image,
                'content' => $request->content,
-               'user_id' => 1
        ]);
 
             toastr()->success('Berhasil menambahkan berita atau kegiatan baru!');
@@ -137,7 +136,6 @@ class BlogController extends Controller
                'description' => $request->description,
                'image' => $image,
                'content' => $request->content,
-               'user_id' => 1
          ]);
 
             toastr()->success('Berhasil mengubah berita atau kegiatan!');

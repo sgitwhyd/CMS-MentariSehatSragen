@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Sliders;
+use Throwable;
 
 class SliderController extends Controller
 {
@@ -20,7 +21,7 @@ class SliderController extends Controller
         $data = Validator::make($request->all(), [
             'title' => 'required',
             'description' => 'required',
-            'image' =>'required|file|image|mimes:jpg,png,jpeg|max:2048',
+            'image' =>'required|file|image|mimes:jpg,png,jpeg|max:1024',
             'sort' => 'required|numeric',
         ]);
 
@@ -31,7 +32,7 @@ class SliderController extends Controller
             return back()->withInput();
         }
 
-         // cek sort
+        // cek sort
         $is_sort = Sliders::where(['sort' => $request->sort])->first();
         if($is_sort) {
             toastr()->error('Urutan slider sudah digunakan!');
@@ -62,7 +63,8 @@ class SliderController extends Controller
         return redirect()->route('slider');
     }
 
-    public function destroy(Request $request) {
+    public function destroy(Request $request)
+    {
 
         $slider = Sliders::find($request->id);
         // remove image local
@@ -73,7 +75,8 @@ class SliderController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function edit(Request $request){
+    public function edit(Request $request)
+    {
         $slider = Sliders::find($request->d);
         if($slider) {
             return view('admin.slider.edit', compact('slider'));
@@ -81,7 +84,8 @@ class SliderController extends Controller
 
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
         $old_slider = Sliders::find($request->id);
         $post = [
             'title' => 'required',
@@ -89,7 +93,7 @@ class SliderController extends Controller
             'sort' => 'required',
         ];
 
-        // cek image request 
+        // cek image request
         if($request->hasFile('image')) {
             $post['image'] = 'file|image|mimes:jpg,png,jpeg|max:2048';
         }
@@ -132,5 +136,5 @@ class SliderController extends Controller
 
         return redirect()->route('slider');
     }
-    
+
 }

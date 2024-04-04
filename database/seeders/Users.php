@@ -17,23 +17,14 @@ class Users extends Seeder
     {
         User::insert([
             [
-                'name' => 'Johan saputra',
-                'username' => 'Johan',
-                'email' => 'admin@gmail.com',
-                'password' => Hash::make('12345'),
+                'name' => 'Mentari Sehat Indonesia Sragen',
+                'username' => 'mentarisehatindonesiasragen',
+                'email' => 'mentarisehatindonesiasragen@gmail.com',
+                'password' => Hash::make('sragenasri'),
                 'role' => 'ADMIN',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
-            [
-                'name' => 'Aulia putri',
-                'username' => 'Aulia',
-                'email' => 'staff@gmail.com',
-                'password' => Hash::make('12345'),
-                'role' => 'STAFF',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ]
         ]);
        
     }

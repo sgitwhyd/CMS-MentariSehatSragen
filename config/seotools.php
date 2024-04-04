@@ -55,7 +55,7 @@ return [
             'description' => $defaultDescription, // set false to total remove
             'url'         => null, // Set null for using Url::current(), set false to total remove
             'type'        => false,
-            'site_name'   => false,
+            'site_name'   => $defaultTitlle,
             'images'      => [],
         ],
     ],

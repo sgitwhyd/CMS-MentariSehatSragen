@@ -26,19 +26,15 @@
       <div class="col-12 entries">
         <article class="entry single">
           <div class="entry-img-detail">
-            <img src="{{ asset('storage/' . $blog->image) }}" alt="">
+            <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->title }} Image">
           </div>
           <h2 class="entry-title">
             {{ $blog->title }}
           </h2>
 
           <div class="entry-meta">
-            <ul>
-              <li class="d-flex align-items-center">
-                <i class="bi bi-clock"></i>
-                {{ date('d F Y', strtotime($blog->created_at)) }}
-              </li>
-            </ul>
+            <i class="bi bi-clock"></i>
+            {{ date('d F Y', strtotime($blog->created_at)) }}
           </div>
 
           <div class="entry-content">

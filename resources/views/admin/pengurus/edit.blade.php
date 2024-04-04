@@ -86,7 +86,7 @@
 
     imgPreview.style.display = 'block';
     imgPreview.style.width = '500px';
-    imgPreview.style.height = '300px';
+    imgPreview.style.maxHeight = '300px';
     imgPreview.style.objectFit = 'cover';
 
     const fileReader = new FileReader();

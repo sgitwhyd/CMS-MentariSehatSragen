@@ -15,7 +15,6 @@ return new class extends Migration {
             $table->string('title', 255);
             $table->string('slug', 255);
             $table->string('description', 255);
-            $table->integer('user_id')->unsigned();
             $table->string('image', 255);
             $table->text('content');
             $table->timestamps();

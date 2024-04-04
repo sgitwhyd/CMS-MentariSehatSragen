@@ -7,12 +7,14 @@ use App\Models\Contacts;
 
 class ContactController extends Controller
 {
-    public function contact() {
+    public function contact()
+    {
         $contact = Contacts::get()->last();
         return view('admin.contact.index', compact('contact'));
     }
 
-    public function contactStore(Request $request) {
+    public function contactStore(Request $request)
+    {
 
         $old_contact = Contacts::get()->last();
         if($old_contact) {
@@ -22,7 +24,8 @@ class ContactController extends Controller
                 'no_telp' => $request->no_telp ? $request->no_telp : $old_contact->no_telp,
                 'maps' => $request->maps ? $request->maps : $old_contact->maps,
             ]);
-            return redirect()->route('contact')->with('success', 'Data Berhasil Diubah');
+            toastr()->success('Data Berhasil Diupdate');
+            return redirect()->route('contact');
         } else {
             $is_valid = $request->validate([
                 'alamat' => 'required',
@@ -38,10 +41,10 @@ class ContactController extends Controller
                     'no_telp' => $request->no_telp,
                     'maps' => $request->maps,
                 ]);
-                return redirect()->route('contact')->with('success', 'Data Berhasil Ditambahkan');
+                toastr()->success('Data Berhasil Ditambahkan');
+                return redirect()->route('contact');
             }
         }
-        
 
     }
 }

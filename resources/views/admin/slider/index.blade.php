@@ -35,14 +35,15 @@
             <div class="row mb-3">
               <label for="image" class="col-sm-2 col-form-label">Deskripsi</label>
               <div class="col-sm-10">
-                <input class="form-control" type="text" id="description" value="{{old('description')}}" name="description" required>
+                <input class="form-control" type="text" id="description" value="{{old('description')}}"
+                  name="description" required>
               </div>
             </div>
             <div class="row mb-3">
               <label for="image" class="col-sm-2 col-form-label">File gambar</label>
               <div class="col-sm-10">
                 <input class="form-control" type="file" id="image" name="image" onchange="previewImage()" required>
-                <img src="" alt="" class="img-preview img-fluid mb-3 col-sm-5" style="width: 300px;">
+                <img src="" alt="" class="img-preview img-fluid mb-3 mt-3 col-sm-5" style="width: 300px;">
               </div>
             </div>
             <div class="row mb-3">
@@ -63,7 +64,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Daftar Pengurus</h5>          
+          <h5 class="card-title">Daftar Pengurus</h5>
           <table class="table datatable-teams" id="table-teams">
             <thead>
               <tr>
@@ -77,24 +78,26 @@
             </thead>
             <tbody>
               @foreach ($slider as $key => $value)
-                <tr>
-                  <td>{{$key + 1}}</td>
-                  <td>{{$value->title}}</td>
-                  <td>{{$value->description}}</td>
-                  <td><img width="50%" src="{{asset('storage/'.$value->image)}}" alt="..."></td>
-                  <td>{{$value->sort}}</td>
-                  <td>
-                    <button type="button" class="btn btn-danger" onclick="sliderDelete('{{$value->id}}')"><i class="bi bi-trash"></i></button>
-                    <a href="{{route('edit-slider', 'd='.$value->id)}}" class="btn btn-warning"><i class="bi bi-pencil"></i></a>
-                  </td>
-                </tr>
+              <tr>
+                <td>{{$key + 1}}</td>
+                <td>{{$value->title}}</td>
+                <td>{{$value->description}}</td>
+                <td><img width="50%" src="{{asset('storage/'.$value->image)}}" alt="..."></td>
+                <td>{{$value->sort}}</td>
+                <td>
+                  <button type="button" class="btn btn-danger" onclick="sliderDelete('{{$value->id}}')"><i
+                      class="bi bi-trash"></i></button>
+                  <a href="{{route('edit-slider', 'd='.$value->id)}}" class="btn btn-warning"><i
+                      class="bi bi-pencil"></i></a>
+                </td>
+              </tr>
               @endforeach
             </tbody>
           </table>
         </div>
       </div>
     </div>
-    @endif 
+    @endif
   </div>
 </section>
 
@@ -104,45 +107,45 @@
 <script>
 "use strict";
 
-  function sliderDelete(id) {
-    if(confirm('Anda yakin ingin menghapus slider?')){
-      $.ajax({
-        url: "{{route('slider.destroy')}}",
-        type: 'POST',
-        dataType: 'json',
-        data: {
-          'id': id,
-          '_token': "{{ csrf_token() }}"
-        },
-        success: function(result) {
-            location.reload();
-        }
-      })
-    }
+function sliderDelete(id) {
+  if (confirm('Anda yakin ingin menghapus slider?')) {
+    $.ajax({
+      url: "{{route('slider.destroy')}}",
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        'id': id,
+        '_token': "{{ csrf_token() }}"
+      },
+      success: function(result) {
+        location.reload();
+      }
+    })
+  }
+}
+
+const previewImage = () => {
+  const image = document.querySelector('#image');
+  const imgPreview = document.querySelector('.img-preview');
+
+  const file = image.files[0];
+  if (file.size > 2 * 1024 * 1024) {
+    image.value = '';
+    alert('Image size exceeds 2MB limit. Please choose a smaller image.');
+    return;
   }
 
-  const previewImage = () => {
-    const image = document.querySelector('#image');
-    const imgPreview = document.querySelector('.img-preview');
+  imgPreview.style.display = 'block';
+  imgPreview.style.width = '500px';
+  imgPreview.style.maxHeight = '300px';
+  imgPreview.style.objectFit = 'cover';
 
-    const file = image.files[0];
-    if (file.size > 2 * 1024 * 1024) {
-      image.value = '';
-      alert('Image size exceeds 2MB limit. Please choose a smaller image.');
-      return;
-    }
+  const fileReader = new FileReader();
+  fileReader.readAsDataURL(file);
 
-    imgPreview.style.display = 'block';
-    imgPreview.style.width = '500px';
-    imgPreview.style.height = '300px';
-    imgPreview.style.objectFit = 'cover';
-
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-
-    fileReader.onload = function(event) {
-      imgPreview.src = event.target.result;
-    }
+  fileReader.onload = function(event) {
+    imgPreview.src = event.target.result;
   }
+}
 </script>
 @endsection

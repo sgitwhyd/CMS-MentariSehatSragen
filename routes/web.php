@@ -25,11 +25,12 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/about', [HomeController::class, 'about']);
-Route::get('/teams', [HomeController::class, 'teams']);
-Route::get('/blog', [HomeController::class, 'blog']);
+Route::get('/tentang-kami', [HomeController::class, 'about'])->name('habout');
+Route::get('/pengurus', [HomeController::class, 'teams'])->name('teams');
+Route::get('/blogs', [HomeController::class, 'blog'])->name('blogs');
 Route::get('/blog/{blog:slug}', [HomeController::class, 'detailBlog']);
-Route::get('/contact', [HomeController::class, 'contact']);
+Route::get('/kontak-kami', [HomeController::class, 'contact'])->name('hcontact');
+
 // auth
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'loginVerify']);
@@ -42,8 +43,8 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::post('/footer', [FooterController::class, 'footerStore']);
 
     // pengurus
-    Route::get('/teams', [TeamController::class, 'teams'])->name('pengurus');
-    Route::post('/teams', [TeamController::class, 'teamStore']);
+    Route::get('/pengurus', [TeamController::class, 'teams'])->name('pengurus');
+    Route::post('/pengurus', [TeamController::class, 'teamStore']);
     Route::get('/edit-team', [TeamController::class, 'edit'])->name('edit-team');
     Route::put('/update-team', [TeamController::class, 'update'])->name('update-team');
     Route::delete('/delete/team', [TeamController::class, 'teamDestroy'])->name('teamDelete');
@@ -60,8 +61,8 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::post('/slider/destroy', [SliderController::class,'destroy'])->name('slider.destroy');
 
     // about
-    Route::get('/about', [AboutController::class, 'about'])->name('about');
-    Route::post('/about', [AboutController::class, 'aboutStore'])->name('aboutStore');
+    Route::get('/tentang-kami', [AboutController::class, 'about'])->name('about');
+    Route::post('/tentang-kami', [AboutController::class, 'aboutStore'])->name('aboutStore');
    
     // contact
     Route::get('/contact', [ContactController::class, 'contact'])->name('contact');

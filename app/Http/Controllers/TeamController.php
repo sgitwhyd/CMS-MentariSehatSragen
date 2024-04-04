@@ -87,7 +87,7 @@ class TeamController extends Controller
 
         // cek image request
         if($request->hasFile('image')) {
-            $post['image'] = 'file|image|mimes:jpg,png,jpeg|max:2048';
+            $post['image'] = 'file|image|mimes:jpg,png,jpeg|max:1024';
         }
         $data = Validator::make($request->all(), $post);
 

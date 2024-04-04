@@ -48,7 +48,8 @@ class FooterController extends Controller
                 'tiktok' => $request->tiktok,
                 'image' => $request->image ? $image : $old_footer->image,
             ]);
-            return redirect()->route('footer')->with('success', 'Footer berhasil diubah');
+            toastr()->success('Footer berhasil diupdate');
+            return redirect()->route('footer');
         } else {
             $is_valid = $request->validate([
                 'title' => 'required',
@@ -75,9 +76,9 @@ class FooterController extends Controller
                     $footer->image = $image;
                     $footer->save();
                 
-                    return redirect()->route('footer')->with('success', 'Footer berhasil ditambahkan');
+                    toastr()->success('Footer berhasil ditambahkan');
+                    return redirect()->route('footer');
                 }
-
             }
             
            

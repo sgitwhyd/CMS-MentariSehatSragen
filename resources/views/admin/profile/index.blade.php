@@ -27,21 +27,24 @@
           <div class="row mb-3">
             <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
             <div class="col-md-8 col-lg-9">
-              <input name="oldpassword" type="password" class="form-control" id="currentPassword">
+              <input name="oldpassword" type="text" class="form-control" value="{{ old('oldpassword') }}"
+                id="currentPassword" required>
             </div>
           </div>
 
           <div class="row mb-3">
             <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
             <div class="col-md-8 col-lg-9">
-              <input name="newpassword" type="password" class="form-control" id="newPassword">
+              <input name="newpassword" type="text" class="form-control" id="newPassword"
+                value="{{ old('newpassword') }}" required>
             </div>
           </div>
 
           <div class="row mb-3">
             <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
             <div class="col-md-8 col-lg-9">
-              <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+              <input name="renewpassword" type="text" class="form-control" id="renewPassword"
+                value="{{ old('renewpassword') }}" required>
             </div>
           </div>
 

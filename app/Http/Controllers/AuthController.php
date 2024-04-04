@@ -5,15 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use App\Models\User;
-use App\Models\Profiles;
 
 class AuthController extends Controller
 {
     public function login()
     {
         if (Auth::check()) {
-            $user = Auth::user();
             return redirect()->route('about');
         } else {
             return view('admin.auth.login');
@@ -27,11 +24,11 @@ class AuthController extends Controller
             'password' => $request->input('password'),
         ];
         if (Auth::Attempt($data)) {
-    
+            toastr()->success('Berhasil Login');
             return redirect()->route('about');
             
         } else {
-            Session::flash('error', 'Username atau Password Salah');
+            toastr()->error('Username atau Password Salah');
             return redirect('/login');
         }
     }

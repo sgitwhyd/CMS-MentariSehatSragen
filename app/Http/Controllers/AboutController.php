@@ -20,7 +20,7 @@ class AboutController extends Controller
     {
         $is_valid = Validator::make($request->all(), [
                  'content' => 'required',
-                 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
              ]);
 
         if($is_valid->fails()) {
