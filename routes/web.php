@@ -12,6 +12,12 @@ use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Blog;
+use Illuminate\Support\Carbon;
+use Spatie\Crawler\Crawler;
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\SitemapGenerator;
+use Spatie\Sitemap\Tags\Url;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,4 +86,29 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     // profile
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/update-password', [ProfileController::class, 'changePassword'])->name('change-pass');
+});
+
+Route::get('/sitemap', function () {
+    $blog = Blog::all();
+    $sitemap = SitemapGenerator::create(env('APP_URL'))
+   ->getSitemap()
+   ->add(Url::create(env('APP_URL'))
+        ->setLastModificationDate(Carbon::yesterday())
+        ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+        ->setPriority(0.1));
+
+    foreach ($blog as $b) {
+        $sitemap->add(Url::create("/blog/". $b->slug)
+          ->setLastModificationDate(Carbon::yesterday())
+        ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+        ->setPriority(0.1));
+    }
+   
+    $sitemap->writeToFile(public_path('sitemap.xml'));
+
+
+
+    $url = url('sitemap.xml');
+
+    return redirect($url);
 });
