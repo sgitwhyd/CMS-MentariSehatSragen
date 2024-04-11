@@ -52,7 +52,7 @@
                 <img src="{{ asset('storage/' . $blog->image) }}" alt="preview-img"
                   class="img-preview img-fluid mb-3 col-sm-5" style="width: 300px;">
                 @else
-                <img src="" alt="" class="img-preview img-fluid mb-3 col-sm-5">
+                <img src="" alt="image-preview" class="img-preview img-fluid mb-3 col-sm-5">
                 @endif
               </div>
             </div>

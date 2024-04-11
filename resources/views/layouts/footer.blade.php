@@ -5,10 +5,8 @@
 
  <footer id="footer" style="
           background-image: url('{{ $bg_footer }}');
-          background-size: cover;
-          background-position: center;
           ">
-   <div class="footer-top" style="position: relative;">
+   <div class="footer-top">
      <div class="container">
        <div class="col-12 mb-5">
          <h2 class="text-center mb-3">
@@ -46,10 +44,12 @@
            <div class="footer-info">
              <p>
                <strong>Phone:</strong>
-               {{ $footer->no_telp }}
+               <a href="tel:{{ $footer->no_telp }}">
+                 {{ $footer->no_telp }}</a>
                <br>
                <strong>Email:</strong>
-               {{ $footer->email }}
+               <a href="mailto:{{ $footer->email }}">
+                 {{ $footer->email }}</a>
                <br>
              </p>
            </div>
@@ -58,10 +58,12 @@
      </div>
    </div>
 
-   <div class="container" style="position: relative;">
+   <div class="container relative">
      <div class="copyright">Copyright &copy;
-      <script>document.write(new Date().getFullYear())</script>
-      <strong><span>MSI</span></strong>. All Rights Reserved
+       <script>
+       document.write(new Date().getFullYear())
+       </script>
+       <strong><span>MSI</span></strong>. All Rights Reserved
      </div>
    </div>
  </footer>

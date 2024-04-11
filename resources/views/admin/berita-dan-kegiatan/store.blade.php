@@ -48,7 +48,7 @@
               </label>
               <div class="col-sm-12">
                 <input class="form-control" type="file" id="image" name="image" onchange="previewImage()" required>
-                <img src="" alt="" class="img-preview img-fluid mt-3 col-sm-5">
+                <img src="" alt="image-preview" class="img-preview img-fluid mt-3 col-sm-5">
               </div>
             </div>
             <div class="col-12 mt-3">

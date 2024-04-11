@@ -9,7 +9,7 @@
 <section id="contact" class="contact">
   <div class="container">
     <div class="section-title">
-      <h2>Kontak</h2>
+      <h1>Kontak</h1>
       <p>Hubungi Kami</p>
     </div>
 
@@ -89,6 +89,7 @@
 <script>
 $(document).ready(function() {
   $('.maps iframe').prop('width', '100%');
+  $('.maps iframe').prop('loading', 'lazy');
 });
 </script>
 @endsection

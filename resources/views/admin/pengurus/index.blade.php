@@ -40,7 +40,7 @@
               <label for="image" class="col-sm-2 col-form-label">File gambar</label>
               <div class="col-sm-10">
                 <input class="form-control" type="file" id="image" name="image" onchange="previewImage()" required>
-                <img src="" alt="" class="img-preview img-fluid mb-3 mt-3 col-sm-5" style="width: 300px;">
+                <img src="" alt="image-preview" class="img-preview img-fluid mb-3 mt-3 col-sm-5" style="width: 300px;">
               </div>
             </div>
             <div class="row mb-3">
@@ -122,10 +122,11 @@ $(document).ready(function() {
   })
 
 });
+const imgPreview = document.querySelector('.img-preview');
+imgPreview.style.display = 'none';
 
 function previewImage() {
   const image = document.querySelector('#image');
-  const imgPreview = document.querySelector('.img-preview');
 
   const file = image.files[0];
   if (file.size > 2 * 1024 * 1024) {

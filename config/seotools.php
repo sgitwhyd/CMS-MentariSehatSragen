@@ -4,11 +4,7 @@
  */
 
 $defaultTitlle = "Mentari Sehat Indonesia Kabupaten Sragen";
-$defaultDescription = "Yayasan Mentari Sehat Indonesia berdiri pada tanggal 22 Juli 2020 di Kota
-Semarang. Pendirian yayasan ini diprakarsai oleh Prof. Dr. Masrukhi, M.Pd,
-Supriyanto, M.Pd., Hj. Siti Taqiyah, BA., Noor Diansyah, SKM., dan Chairul Basar, SE.
-Yayasan ini berdiri sebagai bentuk partisipasi masyarakat di bidang kesehatan, sosial
-dan pendidikan di Indonesia. ";
+$defaultDescription = "Yayasan Mentari Sehat Indonesia didirikan di Semarang pada 22 Juli 2020 oleh Prof. Dr. Masrukhi, Supriyanto, Hj. Siti Taqiyah, Noor Diansyah, dan Chairul Basar.";
 
 return [
     'meta' => [
@@ -21,13 +17,16 @@ return [
             'description'  => $defaultDescription, // set false to total remove
             'separator'    => ' | ',
             'keywords'     => [
-                'Mentari Sehat Indonesia',
-                'Kabupaten Sragen',
-                'Kesehatan',
-                'Pelayanan Kesehatan',
-                'Puskesmas',
-                'Puskesmas Sragen',
-                'Puskesmas Kabupaten Sragen',
+                 'yayasan',
+                'sehat',
+                'mentari',
+                'masyarakat',
+                'indonesia',
+                'sragen',
+                'kabupaten sragen',
+                'mentari sragen',
+                'mentari sehat indonesia',
+                'mentari sehat indonesia kabupaten sragen',
             ],
             'canonical'    => true, // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
             'robots'       => true, // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow

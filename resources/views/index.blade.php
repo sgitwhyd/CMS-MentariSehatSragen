@@ -14,9 +14,9 @@
       <div class="carousel-item active" style="background-image: url('{{ $bgUrl }}')">
         <div class="carousel-container">
           <div class="container">
-            <h2 class="animate__animated animate__fadeInDown">
+            <h1 class="animate__animated animate__fadeInDown">
               {{ $slide->title }}
-            </h2>
+            </h1>
             <p class="animate__animated animate__fadeInUp">
               {{ $slide->description }}
             </p>
@@ -59,16 +59,16 @@
 <section id="services" class="services">
   <div class="container">
     <div class="section-title">
-      <h2></h2>
-      <p>Visi dan Misi</p>
+      <h2>Visi dan Misi</h2>
+      <p>MENTARI SEHAT INDONESIA</p>
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-12">
-        <h2 class="text-center mb-3">Visi</h2>
+        <h2 class="text-center mb-3 font-bold">Visi</h2>
         {!! $visimisi->content_visi !!}
       </div>
       <div class="col-lg-6 col-md-12">
-        <h2 class="text-center mb-3">Misi</h2>
+        <h2 class="text-center mb-3 font-bold">Misi</h2>
         {!! $visimisi->content_misi !!}
       </div>
     </div>
@@ -82,11 +82,11 @@
       <h2>Pengurus</h2>
       <p>Mentari Sehat Indonesia</p>
     </div>
-    <div class="row justify-content-center" style="row-gap: 20px;">
+    <div class="row justify-content-center row-gap-5">
       @foreach($teams as $team)
       <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
         <div class="member d-flex flex-column align-items-center">
-          <img src="{{ asset('storage/' . $team->image) }}" class="img-fluid" alt="" />
+          <img src="{{ asset('storage/' . $team->image) }}" class="img-fluid" alt="{{ $team->nama }} Image" />
           <div class="member-info">
             <h4>
               {{ $team->nama }}

@@ -39,6 +39,18 @@ h6 {
     font-family: "Raleway", sans-serif;
 }
 
+#main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#footer {
+    background-size: cover;
+    background-position: center;
+}
+
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
@@ -396,7 +408,7 @@ h6 {
     text-align: center;
 }
 
-#hero h2 {
+#hero h1 {
     color: #fff;
     margin-bottom: 20px;
     font-size: 48px;
@@ -507,7 +519,7 @@ h6 {
 }
 
 @media (max-width: 768px) {
-    #hero h2 {
+    #hero h1 {
         font-size: 28px;
     }
 }
@@ -542,7 +554,8 @@ section {
     padding-bottom: 40px;
 }
 
-.section-title h2 {
+.section-title h2,
+.section-title h1 {
     font-size: 14px;
     font-weight: 500;
     padding: 0;
@@ -554,7 +567,8 @@ section {
     font-family: "Poppins", sans-serif;
 }
 
-.section-title h2::after {
+.section-title h2::after,
+.section-title h1::after {
     content: "";
     width: 120px;
     height: 1px;
@@ -1988,6 +2002,7 @@ section {
 
 #footer .footer-top {
     padding: 60px 0 30px 0;
+    position: relative;
 }
 
 #footer .footer-top h2 {
@@ -2158,4 +2173,16 @@ section {
     background-color: #019b50;
     border: 1px solid #019b50;
     color: #fff;
+}
+
+.row-gap-5 {
+    row-gap: 20px;
+}
+
+.relative {
+    position: relative;
+}
+
+.font-bold {
+    font-weight: 700;
 }

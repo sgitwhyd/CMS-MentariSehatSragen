@@ -26,7 +26,7 @@
       <div class="col-12 entries">
         <article class="entry single">
           <div class="entry-img-detail">
-            <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->title }} Image">
+            <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->title }} Image" loading="lazy">
           </div>
           <h2 class="entry-title">
             {{ $blog->title }}
@@ -41,9 +41,6 @@
             {!!$blog->content!!}
           </div>
         </article><!-- End blog entry -->
-
-
-
       </div><!-- End blog entries list -->
     </div>
   </div>

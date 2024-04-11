@@ -14,7 +14,7 @@
     </div>
     <div class="row content align-items-center">
       <div class="col-lg-6 d-flex justify-content-center">
-        <img src="{{asset('storage/'.$about->image)}}" class="img-fluid" alt="Mentari Sehat Image">
+        <img src="{{asset('storage/'.$about->image)}}" class="img-fluid" alt="Mentari Sehat Image" loading="lazy">
       </div>
       <div class="col-lg-6 pt-4 pt-lg-0 ">
         <div class="text-content">

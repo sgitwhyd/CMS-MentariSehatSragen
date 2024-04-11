@@ -9,15 +9,15 @@
 <section id="blog" class="blog">
   <div class="container" data-aos="fade-up">
     <div class="section-title">
-      <h2>Blog</h2>
+      <h1>Blog</h1>
       <p>Berita dan Kegiatan</p>
     </div>
-    <div class="row" style="row-gap: 20px;">
+    <div class="row row-gap-5">
       @foreach($blogs as $blog)
       <div class="col-lg-4 col-md-6 entries">
         <article class="entry">
           <div class="entry-img">
-            <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->title }} blog image">
+            <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->title }} blog image" loading="lazy">
           </div>
           <h2 class="entry-title truncate">
             {{$blog->title}}

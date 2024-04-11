@@ -31,7 +31,7 @@
   <link href="{{ url('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="{{ minify('/css/public/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('/assets/css/style-min.css') }}" rel="stylesheet">
 
 </head>
 
@@ -40,18 +40,16 @@
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
-
-
-      <a href="/" class="logo me-auto"><img src="{{ url('assets/logo.png') }}" alt="" class="img-fluid"></a>
-
+      <a href="/" class="logo me-auto">
+        <img src="{{ url('assets/logo.png') }}" alt="Mentari Sehat Indonesia Kabupaten Sragen Image" class="img-fluid">
+      </a>
       @include('layouts.navbar')
-
     </div>
   </header><!-- End Header -->
 
   @yield('slider')
 
-  <main id="main" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between;">
+  <main id="main">
     @yield('content')
 
     @include('layouts.footer')
@@ -71,7 +69,7 @@
   <script src="{{ url('assets/vendor/php-email-form/validate.js') }}"></script>
 
   <!-- Template Main JS File -->
-  <script src="{{ minify('/js/public/main.js') }}"></script>
+  <script src="{{ asset('assets/js/main-min.js') }}"></script>
   @yield('script')
 
 </body>
